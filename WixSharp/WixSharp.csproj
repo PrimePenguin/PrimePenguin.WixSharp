@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+    <AssemblyName>WixSharp</AssemblyName>
+    <RootNamespace>WixSharp</RootNamespace>
+    <Version>0.0.1</Version>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Description>WixSharp is a C# and .NET library that helps developers easily authenticate with and manage Wix stores.</Description>
+    <Authors>Prime Penguin</Authors>
+    <Copyright>Prime Penguin</Copyright>
+    <PackageTags>Wix,ecommerce</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Entities\WebHookModel.cs" />
+    <Compile Remove="Entities\WebHookModelEvent.cs" />
+    <Compile Remove="Services\Webhook\WebhookService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="microsoft.extensions.primitives" Version="1.1.0" />
+    <PackageReference Include="newtonsoft.json" Version="10.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\Webhook\" />
+  </ItemGroup>
+</Project>
