@@ -13,9 +13,8 @@ namespace WixSharp.Services.InventoryItem
         /// <summary>
         /// Creates a new instance of <see cref="InventoryItemService" />.
         /// </summary>
-        /// <param name="myWixUrl">The shop's *.mywix.com URL.</param>
         /// <param name="shopAccessToken">An API access token for the shop.</param>
-        public InventoryItemService(string myWixUrl, string shopAccessToken) : base(shopAccessToken, myWixUrl)
+        public InventoryItemService(string shopAccessToken) : base(shopAccessToken)
         {
         }
 
@@ -23,7 +22,7 @@ namespace WixSharp.Services.InventoryItem
         /// Get the Inventory Item
         /// </summary>
         /// <param name="productInventoryItemId">Inventory item ID.</param>
-        /// <returns>The <see cref="WixSharp.Services.InventoryItem"/>.</returns>
+        /// <returns>The <see cref="InventoryItem"/>.</returns>
         public virtual async Task<Entities.InventoryItem> GetInventoryItemAsync(string productInventoryItemId)
         {
             var req = PrepareRequest($"inventoryItems/{productInventoryItemId}");
@@ -36,7 +35,7 @@ namespace WixSharp.Services.InventoryItem
         /// </summary>
         /// <param name="productInventoryItemId">Inventory item ID.</param>
         /// <param name="variantId">Variant ID.</param>
-        /// <returns>The <see cref="Entities.VariantInventoryResponse"/>.</returns>
+        /// <returns>The <see cref="VariantInventoryRequestResponse"/>.</returns>
         public virtual async Task<VariantInventoryRequestResponse> GetVariantInventoryAsync(string productInventoryItemId,
             string variantId)
         {
@@ -46,7 +45,7 @@ namespace WixSharp.Services.InventoryItem
         }
 
         /// <summary>
-        /// Updates the given <see cref="WixSharp.Services.Order"/>.
+        /// Updates the given <see cref="Order"/>.
         /// </summary>
         /// <param name="productInventoryItemId">Inventory item id</param>
         /// <param name="itemInventoryStatus">The <see cref="ItemInventoryStatus"/> to update.</param>
@@ -64,7 +63,7 @@ namespace WixSharp.Services.InventoryItem
         }
 
         /// <summary>
-        /// Updates the given <see cref="WixSharp.Services.Order"/>.
+        /// Updates the given <see cref="Order"/>.
         /// </summary>
         /// <param name="productInventoryItemId">Inventory item id</param>
         /// <param name="variantId">Variant id</param>

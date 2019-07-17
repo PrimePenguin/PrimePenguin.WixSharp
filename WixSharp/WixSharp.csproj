@@ -12,15 +12,7 @@
     <PackageTags>Wix,ecommerce</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Entities\WebHookModel.cs" />
-    <Compile Remove="Entities\WebHookModelEvent.cs" />
-    <Compile Remove="Services\Webhook\WebhookService.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="microsoft.extensions.primitives" Version="1.1.0" />
     <PackageReference Include="newtonsoft.json" Version="10.0.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Webhook\" />
   </ItemGroup>
 </Project>

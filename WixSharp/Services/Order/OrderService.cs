@@ -10,9 +10,8 @@ namespace WixSharp.Services.Order
         /// <summary>
         /// Creates a new instance of <see cref="OrderService" />.
         /// </summary>
-        /// <param name="myWixUrl">The shop's *.mywix.com URL.</param>
         /// <param name="shopAccessToken">An API access token for the shop.</param>
-        public OrderService(string myWixUrl, string shopAccessToken) : base(shopAccessToken, myWixUrl)
+        public OrderService(string shopAccessToken) : base(shopAccessToken)
         {
         }
 
@@ -20,7 +19,7 @@ namespace WixSharp.Services.Order
         /// Returns an order with the provided ID
         /// </summary>
         /// <param name="orderId">The id of the order to retrieve.</param>
-        public virtual async Task<Entities.GetOrderResponse> GetAsync(string orderId)
+        public virtual async Task<GetOrderResponse> GetAsync(string orderId)
         {
             var req = PrepareRequestForOrders($"orders/{orderId}");
 
@@ -31,7 +30,7 @@ namespace WixSharp.Services.Order
         /// Returns a list of up to 100 orders, given the provided paging, sorting and filters. Hidden orders are not returned.
         /// </summary>
         /// <param name="query">provided paging, sorting and filtering.</param>
-        /// <returns>The new <see cref="Entities.OrderQueryResponse"/>.</returns>
+        /// <returns>The new <see cref="OrderQueryResponse"/>.</returns>
         public virtual async Task<OrderQueryResponse> GetQueryOrdersAsync(OrderQuery query)
         {
             var req = PrepareRequestForOrders("orders/query");

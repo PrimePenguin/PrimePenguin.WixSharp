@@ -16,13 +16,16 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("sort")]
         public string Sort { get; set; }
+
         [JsonProperty("paging")] public Paging Paging { get; set; }
     }
 
     public class CollectionQueryResponse
     {
         [JsonProperty("totalResults")] public int TotalResults { get; set; }
+
         [JsonProperty("metadata")] public MetaData MetaData { get; set; }
+
         [JsonProperty("collections")] public IEnumerable<Collection> Collections { get; set; }
     }
 }

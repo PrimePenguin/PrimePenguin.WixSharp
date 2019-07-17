@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace WixSharp.Entities
 {
@@ -20,7 +21,7 @@ namespace WixSharp.Entities
         /// Choices available for this option
         /// </summary>
         [JsonProperty("choices")]
-        public Choice Choices { get; set; }
+        public IEnumerable<Choice> Choices { get; set; }
     }
 
     public enum OptionType

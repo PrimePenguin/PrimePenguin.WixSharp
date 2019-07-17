@@ -33,6 +33,5 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("subdivision")]
         public string Subdivision { get; set; }
-
     }
 }
