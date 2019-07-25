@@ -4,13 +4,11 @@ namespace WixSharp.Entities
 {
     public class ShipmentDetails
     {
-
         /// <summary>
         /// Shipping destination address
         /// </summary>
         [JsonProperty("address")]
         public Address Address { get; set; }
-
 
         /// <summary>
         /// Order tracking information

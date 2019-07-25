@@ -41,11 +41,11 @@ namespace WixSharp.Entities
 
     public enum MediaItemType
     {
-        unspecified_media_item_type = 0,
-        image = 1,
-        video = 2,
-        audio = 3,
-        document = 4,
-        zip = 5
+        unspecified_media_item_type,
+        image,
+        video,
+        audio,
+        document,
+        zip
     }
 }

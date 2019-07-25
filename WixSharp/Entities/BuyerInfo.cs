@@ -16,10 +16,11 @@ namespace WixSharp.Entities
         [JsonProperty("type")]
         public IdentityType Type { get; set; }
     }
+
     public enum IdentityType
     {
-        UNSPECIFIED_IDENTITY_TYPE = 0,
-        MEMBER = 1,
-        CONTACT = 2
+        UNSPECIFIED_IDENTITY_TYPE,
+        MEMBER,
+        CONTACT
     }
 }

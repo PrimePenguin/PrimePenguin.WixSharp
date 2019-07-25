@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WixSharp.Infrastructure;
 
-namespace WixSharp
+namespace WixSharp.Services
 {
     public abstract class WixService
     {
@@ -27,11 +27,10 @@ namespace WixSharp
         /// <summary>
         /// Creates a new instance of <see cref="WixService" />.
         /// </summary>
-        /// <param name="myWixUrl">The shop's *.myWix.com URL.</param>
         /// <param name="shopAccessToken">An API access token for the shop.</param>
-        protected WixService(string shopAccessToken, string myWixUrl)
+        protected WixService(string shopAccessToken)
         {
-            _ShopUri = BuildShopUri(false, myWixUrl);
+            _ShopUri = BuildWixApiUri();
             _AccessToken = shopAccessToken;
 
             // If there's a global execution policy it should be set as this instance's policy.
@@ -42,30 +41,56 @@ namespace WixSharp
         /// <summary>
         /// Attempts to build a shop API <see cref="Uri"/> for the given shop. Will throw a <see cref="WixException"/> if the URL cannot be formatted.
         /// </summary>
-        /// <param name="myWixUrl">The shop's *.myWix.com URL.</param>
         /// <exception cref="WixException">Thrown if the given URL cannot be converted into a well-formed URI.</exception>
         /// <returns>The shop's API <see cref="Uri"/>.</returns>
-        public static Uri BuildShopUri(bool withAdminPath, string myWixUrl)
+        public static Uri BuildWixApiUri()
         {
-            if (string.IsNullOrEmpty(myWixUrl)) myWixUrl = "www.wixapis.com";
-
-            if (Uri.IsWellFormedUriString(myWixUrl, UriKind.Absolute) == false)
+            var wixApiUrl = "www.wixapis.com";
+            if (Uri.IsWellFormedUriString(wixApiUrl, UriKind.Absolute) == false)
             {
-                //Wix typically returns the shop URL without a scheme. If the user is storing that as-is, the uri will not be well formed.
-                //Try to fix that by adding a scheme and checking again.
-                //if (Uri.IsWellFormedUriString("https://" + myWixUrl, UriKind.Absolute) == false)
-                //{
-                //    throw new WixException($"The given {nameof(myWixUrl)} cannot be converted into a well-formed URI.");
-                //}
-
-                myWixUrl = "https://" + myWixUrl;
+                wixApiUrl = "https://" + wixApiUrl;
             }
 
-            var builder = new UriBuilder(myWixUrl)
+            var builder = new UriBuilder(wixApiUrl)
             {
                 Scheme = "https:",
                 Port = 443, //SSL port
-                Path = withAdminPath ? "admin" : ""
+                Path = ""
+            };
+
+            return builder.Uri;
+        }
+
+        public static Uri BuildWixApiUriForAppInstance()
+        {
+            var wixApiUrl = "dev.wix.com";
+            if (Uri.IsWellFormedUriString(wixApiUrl, UriKind.Absolute) == false)
+            {
+                wixApiUrl = "https://" + wixApiUrl;
+            }
+
+            var builder = new UriBuilder(wixApiUrl)
+            {
+                Scheme = "https:",
+                Port = 443, //SSL port
+                Path = ""
+            };
+
+            return builder.Uri;
+        }
+
+        public static Uri BuildWixUri(string wixUrl)
+        {
+            if (Uri.IsWellFormedUriString(wixUrl, UriKind.Absolute) == false)
+            {
+                wixUrl = "https://" + wixUrl;
+            }
+
+            var builder = new UriBuilder(wixUrl)
+            {
+                Scheme = "https:",
+                Port = 443, //SSL port
+                Path = ""
             };
 
             return builder.Uri;
@@ -78,6 +103,18 @@ namespace WixSharp
                 Scheme = "https:",
                 Port = 443,
                 Path = $"stores/v1/{path}"
+            };
+
+            return new RequestUri(ub.Uri);
+        }
+
+        protected RequestUri PrepareRequestForAppInstance(string path)
+        {
+            var ub = new UriBuilder(_ShopUri= BuildWixApiUriForAppInstance())
+            {
+                Scheme = "https:",
+                Port = 443,
+                Path = $"api/v1/{path}"
             };
 
             return new RequestUri(ub.Uri);
@@ -116,9 +153,6 @@ namespace WixSharp
         /// Executes a request and returns the given type. Throws an exception when the response is invalid.
         /// Use this method when the expected response is a single line or simple object that doesn't warrant its own class.
         /// </summary>
-        /// <remarks>
-        /// This method will automatically dispose the <paramref name="baseRequestMessage" /> when finished.
-        /// </remarks>
         protected async Task<T> ExecuteRequestAsync<T>(RequestUri uri, HttpMethod method, HttpContent content = null, string rootElement = null) where T : new()
         {
             using (var baseRequestMessage = PrepareRequestMessage(uri, method, content))

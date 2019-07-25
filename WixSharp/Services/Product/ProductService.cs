@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using WixSharp.Entities;
 using WixSharp.Infrastructure;
 
@@ -16,15 +17,15 @@ namespace WixSharp.Services.Product
         /// </summary>
         /// <param name="myWixUrl">The shop's *.mywix.com URL.</param>
         /// <param name="shopAccessToken">An API access token for the shop.</param>
-        public ProductService(string myWixUrl, string shopAccessToken) : base(shopAccessToken, myWixUrl)
+        public ProductService(string shopAccessToken) : base(shopAccessToken)
         {
         }
 
         /// <summary>
-        /// Retrieves the <see cref="WixSharp.Services.Product"/> with the given id.
+        /// Retrieves the <see cref="Product"/> with the given id.
         /// </summary>
         /// <param name="productId">The id of the product to retrieve.</param>
-        /// <returns>The <see cref="WixSharp.Services.Product"/>.</returns>
+        /// <returns>The <see cref="Product"/>.</returns>
         public virtual async Task<ProductResponse> GetAsync(string productId)
         {
             var req = PrepareRequest($"products/{productId}");
@@ -37,7 +38,7 @@ namespace WixSharp.Services.Product
         /// </summary>
         /// <param name="productId">The id of the product to retrieve.</param>
         /// <param name="options">Array containing the selected options (e.g, color: Blue, size: Large)</param>
-        /// <returns>The new <see cref="Entities.ProductOptionsAvailabilityResponse"/>.</returns>
+        /// <returns>The new <see cref="ProductOptionsAvailabilityResponse"/>.</returns>
         public virtual async Task<ProductOptionsAvailabilityResponse> GetProductOptionsAvailability(string productId,
             List<string> options)
         {
@@ -60,17 +61,13 @@ namespace WixSharp.Services.Product
         /// Returns a list of up to 100 products, given the provided paging, sorting and filtering.Hidden products are not returned.
         /// </summary>
         /// <param name="query">provided paging, sorting and filtering.</param>
-        /// <returns>The new <see cref="Entities.ProductQueryResponse"/>.</returns>
-        public virtual async Task<ProductQueryResponse> GetQueryProductsAsync(ProductQuery query)
+        /// <returns>The new <see cref="ProductQueryResponse"/>.</returns>
+        public virtual async Task<ProductQueryResponse> GetQueryProductsAsync(ProductRootQuery query)
         {
             var req = PrepareRequest("products/query");
             var body = query.ToDictionary();
 
-            var content = new JsonContent(new
-            {
-                productVariant = body
-            });
-
+            var content = new JsonContent(body);
             return await ExecuteRequestAsync<ProductQueryResponse>(req, HttpMethod.Post, content);
         }
 
@@ -79,7 +76,7 @@ namespace WixSharp.Services.Product
         /// </summary>
         /// <param name="productId">Requested product ID.</param>
         /// <param name="query">provided paging, sorting and filtering.</param>
-        /// <returns>The new <see cref="Entities.ProductQueryResponse"/>.</returns>
+        /// <returns>The new <see cref="ProductQueryResponse"/>.</returns>
         public virtual async Task<QueryVariantsResponse> GetQueryProductVariantsAsync(string productId,
             ProductQueryVariant query)
         {

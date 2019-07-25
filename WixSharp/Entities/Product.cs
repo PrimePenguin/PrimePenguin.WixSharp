@@ -93,7 +93,7 @@ namespace WixSharp.Entities
         /// Text box for the customer to add a message to their order (e.g., customization request)
         /// </summary>
         [JsonProperty("customTextFields")]
-        public IEnumerable<CustomTextField> CustomTextFields { get; set; }
+        public IEnumerable<CustomTextFieldForProduct> CustomTextFields { get; set; }
 
         /// <summary>
         /// Primary media(image, video etc) associated with this product
@@ -131,8 +131,8 @@ namespace WixSharp.Entities
 
     public enum ProductType
     {
-        unspecified_product_type = 0,
-        physical = 1,
-        digital = 2
+        unspecified_product_type,
+        physical,
+        digital
     }
 }

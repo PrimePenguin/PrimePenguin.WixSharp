@@ -5,14 +5,16 @@ using WixSharp.Infrastructure;
 
 namespace WixSharp.Services.Collection
 {
+    /// <summary>
+    /// A service for manipulating wix collection products.
+    /// </summary>
     public class CollectionService : WixService
     {
         /// <summary>
         /// Creates a new instance of <see cref="CollectionService" />.
         /// </summary>
-        /// <param name="myWixUrl">The shop's *.mywix.com URL.</param>
         /// <param name="shopAccessToken">An API access token for the shop.</param>
-        public CollectionService(string myWixUrl, string shopAccessToken) : base(shopAccessToken, myWixUrl)
+        public CollectionService(string shopAccessToken) : base(shopAccessToken)
         {
         }
 

@@ -15,7 +15,6 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("type")]
         public VatType Type { get; set; }
-
     }
     public enum VatType
     {
