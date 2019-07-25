@@ -31,7 +31,7 @@ namespace WixSharp.Entities
 
     public enum MediaType
     {
-        UNSPECIFIED_MEDIA_TYPE_ITEM = 0,
-        IMAGE = 1
+        UNSPECIFIED_MEDIA_TYPE_ITEM,
+        IMAGE
     }
 }

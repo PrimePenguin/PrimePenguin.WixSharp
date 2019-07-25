@@ -27,7 +27,6 @@ namespace WixSharp.Services
         /// <summary>
         /// Creates a new instance of <see cref="WixService" />.
         /// </summary>
-        /// <param name="myWixUrl">Wix URL.</param>
         /// <param name="shopAccessToken">An API access token for the shop.</param>
         protected WixService(string shopAccessToken)
         {
@@ -42,12 +41,29 @@ namespace WixSharp.Services
         /// <summary>
         /// Attempts to build a shop API <see cref="Uri"/> for the given shop. Will throw a <see cref="WixException"/> if the URL cannot be formatted.
         /// </summary>
-        /// <param name="myWixUrl">The wix URL.</param>
         /// <exception cref="WixException">Thrown if the given URL cannot be converted into a well-formed URI.</exception>
         /// <returns>The shop's API <see cref="Uri"/>.</returns>
         public static Uri BuildWixApiUri()
         {
             var wixApiUrl = "www.wixapis.com";
+            if (Uri.IsWellFormedUriString(wixApiUrl, UriKind.Absolute) == false)
+            {
+                wixApiUrl = "https://" + wixApiUrl;
+            }
+
+            var builder = new UriBuilder(wixApiUrl)
+            {
+                Scheme = "https:",
+                Port = 443, //SSL port
+                Path = ""
+            };
+
+            return builder.Uri;
+        }
+
+        public static Uri BuildWixApiUriForAppInstance()
+        {
+            var wixApiUrl = "dev.wix.com";
             if (Uri.IsWellFormedUriString(wixApiUrl, UriKind.Absolute) == false)
             {
                 wixApiUrl = "https://" + wixApiUrl;
@@ -92,6 +108,18 @@ namespace WixSharp.Services
             return new RequestUri(ub.Uri);
         }
 
+        protected RequestUri PrepareRequestForAppInstance(string path)
+        {
+            var ub = new UriBuilder(_ShopUri= BuildWixApiUriForAppInstance())
+            {
+                Scheme = "https:",
+                Port = 443,
+                Path = $"api/v1/{path}"
+            };
+
+            return new RequestUri(ub.Uri);
+        }
+
         protected RequestUri PrepareRequestForOrders(string path)
         {
             var ub = new UriBuilder(_ShopUri)
@@ -125,9 +153,6 @@ namespace WixSharp.Services
         /// Executes a request and returns the given type. Throws an exception when the response is invalid.
         /// Use this method when the expected response is a single line or simple object that doesn't warrant its own class.
         /// </summary>
-        /// <remarks>
-        /// This method will automatically dispose the <paramref name="baseRequestMessage" /> when finished.
-        /// </remarks>
         protected async Task<T> ExecuteRequestAsync<T>(RequestUri uri, HttpMethod method, HttpContent content = null, string rootElement = null) where T : new()
         {
             using (var baseRequestMessage = PrepareRequestMessage(uri, method, content))

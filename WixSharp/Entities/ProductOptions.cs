@@ -26,8 +26,8 @@ namespace WixSharp.Entities
 
     public enum OptionType
     {
-        unspecified_option_type = 0,
-        drop_down = 1,
-        color = 2
+        unspecified_option_type,
+        drop_down,
+        color
     }
 }

@@ -110,26 +110,30 @@ namespace WixSharp.Entities
     }
     public enum PaymentStatus
     {
-        UNSPECIFIED_PAYMENT_STATUS = 0,
-        NOT_PAID = 1,
-        PAID = 2
+        UNSPECIFIED_PAYMENT_STATUS ,
+        NOT_PAID ,
+        PAID
     }
 
     public enum WeightUnit
     {
-        UNSPECIFIED_WEIGHT_UNIT = 0,
-        KG = 1,
-        LB = 2
+        UNSPECIFIED_WEIGHT_UNIT,
+        KG ,
+        LB 
     }
 
     public enum FulfillmentStatus
     {
-        NOT_FULFILLED = 0,
-        FULFILLED = 1
+        NOT_FULFILLED,
+        FULFILLED
     }
 
     public class GetOrderResponse
-    {
+    {   
+        /// <summary>
+        /// Order object
+        /// </summary>
+        [JsonProperty("order")]
         public Order Order { get; set; }
     }
 }

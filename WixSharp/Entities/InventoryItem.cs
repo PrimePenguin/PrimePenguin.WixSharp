@@ -8,13 +8,13 @@ namespace WixSharp.Entities
         /// Inventory item ID.
         /// </summary>
         [JsonProperty("id")]
-        public bool Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Product ID
         /// </summary>
         [JsonProperty("externalId")]
-        public bool ExternalId { get; set; }
+        public string ExternalId { get; set; }
 
         /// <summary>
         /// Whether inventory is being tracked.

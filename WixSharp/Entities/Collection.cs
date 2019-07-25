@@ -25,6 +25,10 @@ namespace WixSharp.Entities
 
     public class CollectionResponse
     {
+        /// <summary>
+        /// collection object
+        /// </summary>
+        [JsonProperty("collection")]
         public Collection Collection { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace WixSharp.Services.Order
         /// </summary>
         /// <param name="query">provided paging, sorting and filtering.</param>
         /// <returns>The new <see cref="OrderQueryResponse"/>.</returns>
-        public virtual async Task<OrderQueryResponse> GetQueryOrdersAsync(OrderQuery query)
+        public virtual async Task<OrderQueryResponse> GetQueryOrdersAsync(OrderRootQuery query)
         {
             var req = PrepareRequestForOrders("orders/query");
             HttpContent content = null;
@@ -39,12 +39,8 @@ namespace WixSharp.Services.Order
             if (query != null)
             {
                 var body = query.ToDictionary();
-                content = new JsonContent(new
-                {
-                    productVariant = body
-                });
+                content = new JsonContent(body);
             }
-
             return await ExecuteRequestAsync<OrderQueryResponse>(req, HttpMethod.Post, content);
         }
     }

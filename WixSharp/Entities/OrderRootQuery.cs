@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace WixSharp.Entities
 {
-   public class OrderQuery
+    public class OrderQuery
     {
         /// <summary>
         /// Filter string
@@ -16,10 +16,17 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("sort")]
         public string Sort { get; set; }
+
         [JsonProperty("paging")] public Paging Paging { get; set; }
     }
 
-   public class OrderQueryResponse
+    public class OrderRootQuery
+    {
+        [JsonProperty("query")]
+        public OrderQuery Query { get; set; }
+    }
+
+    public class OrderQueryResponse
    {
        /// <summary>
        /// Total results

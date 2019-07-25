@@ -57,7 +57,7 @@ namespace WixSharp.Entities
         /// Line item's custom text field selections
         /// </summary>
         [JsonProperty("customTextFields")]
-        public IEnumerable<CustomTextField> CustomTextFields { get; set; }
+        public IEnumerable<CustomTextFieldForLineItem> CustomTextFields { get; set; }
 
         /// <summary>
         /// Line item product ID (optional for POS orders)
@@ -80,9 +80,9 @@ namespace WixSharp.Entities
 
     public enum LineItemType
     {
-        UNSPECIFIED_LINE_ITEM_TYPE = 0,
-        PHYSICAL = 1,
-        DIGITAL = 2,
-        CUSTOM_AMOUNT_ITEM = 3
+        UNSPECIFIED_LINE_ITEM_TYPE,
+        PHYSICAL,
+        DIGITAL,
+        CUSTOM_AMOUNT_ITEM
     }
 }
