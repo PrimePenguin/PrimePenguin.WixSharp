@@ -61,7 +61,7 @@ namespace WixSharp.Services.Product
         /// </summary>
         /// <param name="query">provided paging, sorting and filtering.</param>
         /// <returns>The new <see cref="ProductQueryResponse"/>.</returns>
-        public virtual async Task<ProductQueryResponse> GetQueryProductsAsync(ProductQuery query)
+        public virtual async Task<ProductQueryResponse> GetQueryProductsAsync(ProductRootQuery query)
         {
             var req = PrepareRequest("products/query");
             var body = query.ToDictionary();
