@@ -15,7 +15,6 @@ namespace WixSharp.Services.Product
         /// <summary>
         /// Creates a new instance of <see cref="ProductService" />.
         /// </summary>
-        /// <param name="myWixUrl">The shop's *.mywix.com URL.</param>
         /// <param name="shopAccessToken">An API access token for the shop.</param>
         public ProductService(string shopAccessToken) : base(shopAccessToken)
         {
@@ -62,7 +61,7 @@ namespace WixSharp.Services.Product
         /// </summary>
         /// <param name="query">provided paging, sorting and filtering.</param>
         /// <returns>The new <see cref="ProductQueryResponse"/>.</returns>
-        public virtual async Task<ProductQueryResponse> GetQueryProductsAsync(ProductRootQuery query)
+        public virtual async Task<ProductQueryResponse> GetQueryProductsAsync(ProductQuery query)
         {
             var req = PrepareRequest("products/query");
             var body = query.ToDictionary();

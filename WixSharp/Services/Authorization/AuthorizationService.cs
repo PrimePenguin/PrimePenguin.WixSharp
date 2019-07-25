@@ -99,9 +99,7 @@ namespace WixSharp.Services.Authorization
                 var rawDataString = await response.Content.ReadAsStringAsync();
 
                 WixService.CheckResponseExceptions(response, rawDataString);
-
-                var json = JsonConvert.SerializeObject(rawDataString);
-                return JsonConvert.DeserializeObject<WixAuthorizationResult>(json);
+                return JsonConvert.DeserializeObject<WixAuthorizationResult>(rawDataString);
             }
         }
 

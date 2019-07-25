@@ -25,7 +25,6 @@ dotnet add package WixSharp
 An access token is the token returned after authenticating and authorizing a WixSharp app installation with a
 real WixSharp store.
 
-
 ```cs
 var service = new OrderService(shopAccessToken);
 ```
