@@ -181,17 +181,14 @@ namespace WixSharp.Services.Authorization
         /// <summary>
         /// Builds an authorization URL for Wix OAuth integration.
         /// </summary>
-        /// <param name="wixUrl">The shop's *.mywix.com URL.</param>
         /// <param name="wixAppId">Your wix app Id</param>
         /// <param name="redirectUrl">URL to redirect the user to after integration.</param>
         /// <param name="state">An optional, random string value provided by your application which is unique for each authorization request. During the OAuth callback phase, your application should check that this value matches the one you provided to this method.</param>
         /// <returns>The authorization url.</returns>
-        public static Uri BuildAuthorizationUrlUsingToken(string wixUrl,string wixAppId, string redirectUrl, string state = null)
+        public static Uri BuildAuthorizationUrlUsingToken(string wixAppId, string redirectUrl, string state = null)
         {
-            if (string.IsNullOrEmpty(wixUrl)) wixUrl = "www.wix.com";
-
             //Prepare a uri builder for the shop URL
-            var builder = new UriBuilder(WixService.BuildWixUri(wixUrl));
+            var builder = new UriBuilder(WixService.BuildWixUri("www.wix.com"));
 
             //Build the querystring
             var qs = new List<KeyValuePair<string, string>>
@@ -214,14 +211,13 @@ namespace WixSharp.Services.Authorization
         /// <summary>
         /// Builds an authorization URL for Wix OAuth integration.
         /// </summary>
-        /// <param name="wixUrl">The shop's *.mywix.com URL.</param>
         /// <param name="wixAppId">Your wix app Id</param>
         /// <param name="redirectUrl">URL to redirect the user to after integration.</param>
         /// <param name="state">An optional, random string value provided by your application which is unique for each authorization request. During the OAuth callback phase, your application should check that this value matches the one you provided to this method.</param>
         /// <returns>The authorization url.</returns>
-        public static Uri BuildAuthorizationUrl(string wixUrl, string wixAppId, string redirectUrl, string state = null)
+        public static Uri BuildAuthorizationUrl(string wixAppId, string redirectUrl, string state = null)
         {
-            return BuildAuthorizationUrlUsingToken(wixUrl, wixAppId, redirectUrl, state);
+            return BuildAuthorizationUrlUsingToken(wixAppId, redirectUrl, state);
         }
 
         /// <summary>

@@ -5,6 +5,11 @@ namespace WixSharp.Entities
 {
     public class Product
     {
+        public Product()
+        {
+            Variants=new List<Variants>();
+        }
+
         /// <summary>
         /// Product weight
         /// </summary>
@@ -118,6 +123,12 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("productOptions")]
         public IEnumerable<ProductOptions> ProductOptions { get; set; }
+
+        /// <summary>
+        /// All variants
+        /// </summary>
+        [JsonProperty("variants")]
+        public List<Variants> Variants { get; set; }
     }
 
     public class ProductResponse
