@@ -34,9 +34,10 @@ namespace WixSharp.Entities
         [JsonProperty("resolutionMethod")]
         public ResolutionMethod ResolutionMethod { get; set; }
     }
+
     public enum ResolutionMethod
     {
-        QUERY_PARAM = 0,
-        SUBDOMAIN = 1,
+        QUERY_PARAM,
+        SUBDOMAIN ,
     }
 }

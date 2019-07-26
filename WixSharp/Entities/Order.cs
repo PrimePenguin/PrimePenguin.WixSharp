@@ -110,15 +110,15 @@ namespace WixSharp.Entities
     }
     public enum PaymentStatus
     {
-        UNSPECIFIED_PAYMENT_STATUS ,
-        NOT_PAID ,
+        UNSPECIFIED_PAYMENT_STATUS,
+        NOT_PAID,
         PAID
     }
 
     public enum WeightUnit
     {
         UNSPECIFIED_WEIGHT_UNIT,
-        KG ,
+        KG,
         LB 
     }
 

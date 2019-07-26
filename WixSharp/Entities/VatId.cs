@@ -16,10 +16,11 @@ namespace WixSharp.Entities
         [JsonProperty("type")]
         public VatType Type { get; set; }
     }
+
     public enum VatType
     {
-        UNSPECIFIED_TAX_TYPE = 0,
-        CPF = 1,
-        CNPJ = 2
+        UNSPECIFIED_TAX_TYPE,
+        CPF,
+        CNPJ 
     }
 }

@@ -19,7 +19,7 @@ namespace WixSharp.Entities
 
     public enum Source
     {
-        UNSPECIFIED_INVOICE_SOURCE = 0,
-        WIX = 1
+        UNSPECIFIED_INVOICE_SOURCE,
+        WIX
     }
 }

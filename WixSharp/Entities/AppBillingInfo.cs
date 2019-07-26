@@ -18,8 +18,8 @@ namespace WixSharp.Entities
     }
     public enum BillingCycle
     {
-        NONE_CYCLE = 0,
-        MONTHLY = 1,
-        YEARLY = 2
+        NONE_CYCLE,
+        MONTHLY,
+        YEARLY
     }
 }

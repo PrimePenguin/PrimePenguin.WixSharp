@@ -14,13 +14,13 @@ namespace WixSharp.Entities
         /// Product price
         /// </summary>
         [JsonProperty("price")]
-        public int ProductPrice { get; set; }
+        public string ProductPrice { get; set; }
 
         /// <summary>
         /// Discounted product price(if no discounted price is set, the product price is returned)
         /// </summary>
         [JsonProperty("discountedPrice")]
-        public int DiscountedPrice { get; set; }
+        public string DiscountedPrice { get; set; }
 
         /// <summary>
         /// The product price and discounted price, formatted with the currency
