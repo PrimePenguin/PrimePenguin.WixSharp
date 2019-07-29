@@ -1,5 +1,9 @@
 # WixSharp: A .NET library for Wix.
 
+[![NuGet](https://img.shields.io/nuget/v/PrimePenguin.WixSharp.svg?maxAge=3600)](https://www.nuget.org/packages/PrimePenguin.WixSharp/)
+[![Build status](https://ci.appveyor.com/api/projects/status/a8finqe6syq9v825?svg=true)](https://ci.appveyor.com/project/ajayak/primepenguin-wixsharp)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=3600)](https://raw.githubusercontent.com/PrimePenguin/PrimePenguin.WixSharp/master/LICENSE)
+
 WixSharp is a .NET library that enables you to authenticate and make API calls to WixSharp. It's great for 
 building custom WixSharp Apps using C# and .NET. You can quickly and easily get up and running with WixSharp
 using this library.
@@ -10,13 +14,13 @@ WixSharp is [available on NuGet](https://www.nuget.org/packages/WixSharp/). Use 
 console in Visual Studio to install it:
 
 ```
-Install-Package WixSharp
+Install-Package PrimePenguin.WixSharp
 ```
 
 If you're using .NET Core, you can use the `dotnet` command from your favorite shell:
 
 ```
-dotnet add package WixSharp
+dotnet add package PrimePenguin.WixSharp
 ```
 
 # Using WixSharp
