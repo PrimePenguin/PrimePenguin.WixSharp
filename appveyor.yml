@@ -1,0 +1,34 @@
+version: 4.0.{build}
+image: Visual Studio 2017
+build_script:
+- ps: ./scripts/build.ps1
+environment:
+  APPVEYOR_REPO_TAG: true
+artifacts:
+- path: WixSharp/bin/Release/netstandard1.4
+  name: netstandard16
+- path: WixSharp/bin/Release/net45
+  name: net461
+skip_commits:
+  message: /\[skip\]/
+  files:
+    - readme.md
+    - LICENSE
+    - .gitignore
+    - .vscode/*
+    - changelog.md
+deploy:
+- provider: NuGet
+  api_key:
+    secure: Fq9bETTEgKcrrqXvHgb2ysWyKkuuvR0akA2QNjxwcr3O4RprOXKr/bor2NpNzMjU
+  on:
+    branch: master
+- provider: GitHub
+  appveyor_repo_tag: true
+  tag: $(APPVEYOR_REPO_TAG_NAME)
+  description: "Automated AppVeyor release for WixSharp v$(APPVEYOR_REPO_TAG_NAME)."
+  auth_token:
+    secure: rUdMlXxmA59ftJKv2pnCXtgwYhZf2xqyFl0iuAvf6qylYCjM3aF8klLN+711LFV5
+  artifact: PrimePenguin.WixSharp.nupkg
+  on:
+    branch: master

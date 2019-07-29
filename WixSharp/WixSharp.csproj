@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.1;netstandard1.4;</TargetFrameworks>
-    <AssemblyName>WixSharp</AssemblyName>
+    <AssemblyName>PrimePenguin.WixSharp</AssemblyName>
     <RootNamespace>WixSharp</RootNamespace>
     <Version>0.0.1</Version>
   </PropertyGroup>

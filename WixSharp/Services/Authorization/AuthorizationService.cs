@@ -17,7 +17,7 @@ namespace WixSharp.Services.Authorization
     {
         private static readonly Regex _querystringRegex = new Regex(@"[?|&]([\w\.]+)=([^?|^&]+)", RegexOptions.Compiled);
 
-       /// <remarks>
+        /// <remarks>
         /// Source for this method: https://stackoverflow.com/a/22046389
         /// </remarks>
         public static IDictionary<string, string> ParseRawQuerystring(string qs)

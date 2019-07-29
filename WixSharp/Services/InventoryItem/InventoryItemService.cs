@@ -13,7 +13,6 @@ namespace WixSharp.Services.InventoryItem
         /// <summary>
         /// Creates a new instance of <see cref="InventoryItemService" />.
         /// </summary>
-        /// <param name="myWixUrl">The wix URL.</param>
         /// <param name="shopAccessToken">An API access token for the shop.</param>
         public InventoryItemService(string shopAccessToken) : base(shopAccessToken)
         {
