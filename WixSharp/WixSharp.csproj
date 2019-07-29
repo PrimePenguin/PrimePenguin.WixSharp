@@ -1,9 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1;netstandard1.4;</TargetFrameworks>
     <AssemblyName>WixSharp</AssemblyName>
     <RootNamespace>WixSharp</RootNamespace>
     <Version>0.0.1</Version>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Description>WixSharp is a C# and .NET library that helps developers easily authenticate with and manage Wix stores.</Description>
+    <Authors>Ajay Kumar</Authors>
+    <Copyright>Prime Penguin</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/PrimePenguin/PrimePenguin.WixSharp/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/PrimePenguin/PrimePenguin.WixSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PrimePenguin/PrimePenguin.WixSharp</RepositoryUrl>
+    <PackageTags>wix,ecommerce</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageIconUrl>https://raw.githubusercontent.com/PrimePenguin/PrimePenguin.WixSharp/master/PrimePenguin.png</PackageIconUrl>
   </PropertyGroup>
   <PropertyGroup>
     <Description>WixSharp is a C# and .NET library that helps developers easily authenticate with and manage Wix stores.</Description>
@@ -14,5 +25,15 @@
   <ItemGroup>
     <PackageReference Include="microsoft.extensions.primitives" Version="1.1.0" />
     <PackageReference Include="newtonsoft.json" Version="10.0.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
+  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(TargetFramework)', '^net\d'))">
+    <DefineConstants>NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(TargetFramework)', '^netstandard\d'))">
+    <DefineConstants>NETSTANDARD</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('$(TargetFramework)', '^netcoreapp\d'))">
+    <DefineConstants>NETCORE</DefineConstants>
+  </PropertyGroup>
 </Project>

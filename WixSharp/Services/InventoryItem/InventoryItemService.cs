@@ -51,7 +51,7 @@ namespace WixSharp.Services.InventoryItem
         /// <param name="productInventoryItemId">Inventory item id</param>
         /// <param name="itemInventoryStatus">The <see cref="ItemInventoryStatus"/> to update.</param>
         /// <returns>Returns an empty object..</returns>
-        public virtual async Task<object> UpdateItemInventoryStatusAsync(string productInventoryItemId, 
+        public virtual async Task<object> UpdateItemInventoryStatusAsync(string productInventoryItemId,
             ItemInventoryStatus itemInventoryStatus)
         {
             var req = PrepareRequest($"inventoryItems/{productInventoryItemId}");
@@ -60,7 +60,7 @@ namespace WixSharp.Services.InventoryItem
                 itemInventoryStatus
             });
 
-            return await ExecuteRequestAsync<object>(req, HttpMethod.Patch, content);
+            return await ExecuteRequestAsync<object>(req, new HttpMethod("Patch"), content);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace WixSharp.Services.InventoryItem
                 variantInventoryRequest
             });
 
-            return await ExecuteRequestAsync<object>(req, HttpMethod.Patch, content);
+            return await ExecuteRequestAsync<object>(req, new HttpMethod("Patch"), content);
         }
     }
 }
