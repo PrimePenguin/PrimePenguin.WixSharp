@@ -147,17 +147,6 @@ namespace WixSharp.Services.Authorization
         /// <returns>A boolean indicating whether the request is authentic or not.</returns>
         public static bool IsAuthenticRequest(IEnumerable<KeyValuePair<string, StringValues>> querystring, string wixAppSecretKey)
         {
-            // To calculate HMAC signature:
-            // 1. Cast querystring to KVP pairs.
-            // 2. Remove `signature` and `hmac` keys.
-            // 3. Replace & with %26, % with %25 in keys and values.
-            // 4. Replace = with %3D in keys only.
-            // 5. Join each key and value with = (key=value).
-            // 6. Sorty kvps alphabetically.
-            // 7. Join kvps together with & (key=value&key=value&key=value).
-            // 8. Compute the kvps with an HMAC-SHA256 using the secret key.
-            // 9. Request is authentic if the computed string equals the `hash` in query string.
-            // Reference: https://docs.shopify.com/api/guides/authentication/oauth#making-authenticated-requests
             var hmacValues = querystring.FirstOrDefault(kvp => kvp.Key == "hmac").Value;
 
             if (string.IsNullOrEmpty(hmacValues) || hmacValues.Count() < 1)

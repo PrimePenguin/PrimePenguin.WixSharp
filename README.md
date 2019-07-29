@@ -1,4 +1,4 @@
-# WixSharp: A .NET library for Starweb.
+# WixSharp: A .NET library for Wix.
 
 WixSharp is a .NET library that enables you to authenticate and make API calls to WixSharp. It's great for 
 building custom WixSharp Apps using C# and .NET. You can quickly and easily get up and running with WixSharp
