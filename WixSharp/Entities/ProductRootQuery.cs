@@ -8,13 +8,13 @@ namespace WixSharp.Entities
         /// Amount of items to load per page
         /// </summary>
         [JsonProperty("limit")]
-        public string Limit { get; set; }
+        public int Limit { get; set; }
 
         /// <summary>
         /// Number of items to skip in the display (relevant for all pages after the first)
         /// </summary>
         [JsonProperty("offset")]
-        public string Offset { get; set; }
+        public int Offset { get; set; }
     }
 
     public class Query

@@ -14,7 +14,7 @@ namespace WixSharp.Entities
         /// Total number of line items
         /// </summary>
         [JsonProperty("quantity")]
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
 
         /// <summary>
         /// Total tax

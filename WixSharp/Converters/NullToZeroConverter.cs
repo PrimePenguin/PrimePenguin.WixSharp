@@ -31,8 +31,5 @@ namespace WixSharp.Converters
                 writer.WriteValue(number);
             }
         }
-
     }
 }
-
-
