@@ -14,7 +14,7 @@ namespace WixSharp.Entities
         /// Product weight
         /// </summary>
         [JsonProperty("weight")]
-        public int Weight { get; set; }
+        public double Weight { get; set; }
 
         /// <summary>
         /// Product name

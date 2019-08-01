@@ -35,6 +35,12 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("variant")]
         public Variant Variant { get; set; }
+
+        /// <summary>
+        /// Variant inventory status
+        /// </summary>
+        [JsonProperty("variantInventoryStatus")]
+        public VariantInventoryRequestResponse VariantInventoryStatus { get; set; }
     }
 
     public class Variant
