@@ -112,7 +112,8 @@ namespace WixSharp.Entities
     {
         UNSPECIFIED_PAYMENT_STATUS,
         NOT_PAID,
-        PAID
+        PAID,
+        FULLY_REFUNDED
     }
 
     public enum WeightUnit

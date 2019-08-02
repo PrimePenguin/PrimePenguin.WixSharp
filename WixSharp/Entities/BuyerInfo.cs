@@ -11,6 +11,30 @@ namespace WixSharp.Entities
         public string Id { get; set; }
 
         /// <summary>
+        /// first name of the buyer
+        /// </summary>
+        [JsonProperty("firstName")]
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// last name of the buyer
+        /// </summary>
+        [JsonProperty("lastName")]
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// phone of the buyer
+        /// </summary>
+        [JsonProperty("phone")]
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// email of the buyer
+        /// </summary>
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
+        /// <summary>
         /// Customer type
         /// </summary>
         [JsonProperty("type")]

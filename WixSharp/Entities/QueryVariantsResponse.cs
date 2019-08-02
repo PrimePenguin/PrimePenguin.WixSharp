@@ -55,7 +55,7 @@ namespace WixSharp.Entities
         /// Variant Weight
         /// </summary>
         [JsonProperty("weight")]
-        public int Weight { get; set; }
+        public double Weight { get; set; }
 
         /// <summary>
         /// Variant SKU (stock keeping unit
