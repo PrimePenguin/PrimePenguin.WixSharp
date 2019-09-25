@@ -22,4 +22,10 @@ namespace WixSharp.Entities
         [JsonProperty("trackInventory")]
         public bool TrackInventory { get; set; }
     }
+
+    public class InventoryItemStatus
+    {
+        [JsonProperty("item")]
+        public InventoryItem InventoryItem { get; set; }
+    }
 }

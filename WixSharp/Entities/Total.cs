@@ -45,5 +45,11 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("shipping")]
         public string Shipping { get; set; }
+
+        /// <summary>
+        /// Total refund
+        /// </summary>
+        [JsonProperty("refund")]    
+        public string Refund { get; set; }      
     }
 }

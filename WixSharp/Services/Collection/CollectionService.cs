@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using WixSharp.Entities;
 using WixSharp.Infrastructure;
@@ -26,7 +27,6 @@ namespace WixSharp.Services.Collection
         public virtual async Task<CollectionResponse> GetAsync(string collectionId)
         {
             var req = PrepareRequest($"collections/{collectionId}");
-
             return await ExecuteRequestAsync<CollectionResponse>(req, HttpMethod.Get);
         }
 
@@ -43,13 +43,47 @@ namespace WixSharp.Services.Collection
             if (query != null)
             {
                 var body = query.ToDictionary();
-                content = new JsonContent(new
-                {
-                    productVariant = body
-                });
+                content = new JsonContent(body);
             }
-
             return await ExecuteRequestAsync<CollectionQueryResponse>(req, HttpMethod.Post, content);
+        }
+
+        /// <summary>
+        /// Adds products to a specified collection
+        /// </summary>
+        /// <param name="collectionId"> Id of the collection</param>
+        /// <param name="productIds">IDs of products to add to the collection</param>
+        /// <returns>Returns an empty object.</returns>
+        public virtual async Task AddProductsToCollection(string collectionId, List<string> productIds)
+        {
+            var req = PrepareRequest($"collections/{collectionId}/productIds");
+            HttpContent content = null;
+
+            if (productIds != null)
+            {
+                var body = productIds.ToDictionary();
+                content = new JsonContent(body);
+            }
+            await ExecuteRequestAsync<object>(req, HttpMethod.Post, content);
+        }
+
+        /// <summary>
+        /// Deletes products from a specified collection
+        /// </summary>
+        /// <param name="collectionId"> Id of the collection</param>
+        /// <param name="productIds">IDs of products that will be be deleted from collection, if not provided all are deleted</param>
+        /// <returns>Returns an empty object.</returns>
+        public virtual async Task RemoveProductsFromCollection(string collectionId, List<string> productIds)
+        {
+            var req = PrepareRequest($"collections/{collectionId}/productIds/delete");
+            HttpContent content = null;
+
+            if (productIds != null)
+            {
+                var body = productIds.ToDictionary();
+                content = new JsonContent(body);
+            }
+            await ExecuteRequestAsync<object>(req, HttpMethod.Post, content);
         }
     }
 }

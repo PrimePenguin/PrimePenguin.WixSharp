@@ -22,8 +22,7 @@ namespace WixSharp.Services.Order
         public virtual async Task<GetOrderResponse> GetAsync(string orderId)
         {
             var req = PrepareRequestForOrders($"orders/{orderId}");
-
-            return await ExecuteRequestAsync<Entities.GetOrderResponse>(req, HttpMethod.Get);
+            return await ExecuteRequestAsync<GetOrderResponse>(req, HttpMethod.Get);
         }
 
         /// <summary>
@@ -42,6 +41,39 @@ namespace WixSharp.Services.Order
                 content = new JsonContent(body);
             }
             return await ExecuteRequestAsync<OrderQueryResponse>(req, HttpMethod.Post, content);
+        }
+
+        /// <summary>
+        /// Creates a fulfillment (a subset of an order, with line items that are being shipped together) based on the body paramaters passed with the request. If the site owner has requested it, calling this request will trigger an email to the customer (based on the Wix store settings)
+        /// </summary>
+        /// <param name="orderId">Order ID to which the fulfillment will be related</param>
+        /// <param name="fulfillment">Fulfillment to be created in the service</param>
+        /// <returns>The new <see cref="Entities.Product"/>.</returns>
+        public virtual async Task<FulFillmentResponse> CreateFulfillment(string orderId, CreateFulFillment fulfillment)
+        {
+            var req = PrepareRequestForOrders($"orders/{orderId}/fulfillments");
+            HttpContent content = null;
+
+            if (fulfillment != null)
+            {
+                var body = fulfillment.ToDictionary();
+                content = new JsonContent(body);
+            }
+            return await ExecuteRequestAsync<FulFillmentResponse>(req, HttpMethod.Post, content);
+        }
+
+        /// <summary>
+        /// Updates an existing fulfillment
+        /// </summary>
+        /// <param name="orderId">Order ID</param>
+        /// <param name="fulfillmentId">Fulfillment ID</param>
+        /// <param name="fulfillmentTrackingInfo">Updated tracking info</param>
+        /// <returns>Returns an empty object.</returns>
+        public virtual async Task UpdateFulfillment(string orderId, string fulfillmentId,
+            FulfillmentTrackingInfo fulfillmentTrackingInfo)
+        {
+            var req = PrepareRequestForOrders($"orders/{orderId}/fulfillments/{fulfillmentId}");
+            await ExecuteRequestAsync<object>(req, HttpMethod.Put);
         }
     }
 }

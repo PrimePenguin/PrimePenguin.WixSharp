@@ -12,7 +12,7 @@ namespace WixSharp.Entities
         public MainMedia MainMedia { get; set; }
 
         /// <summary>
-        /// Media (images, videoes etc) associated with this product
+        /// Media (images, videos etc) associated with this product
         /// </summary>
         [JsonProperty("items")]
         public IEnumerable<MainMedia> Items { get; set; }

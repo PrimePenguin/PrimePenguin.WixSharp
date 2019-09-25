@@ -23,7 +23,7 @@ namespace WixSharp.Entities
         /// Whether this text box is mandatory
         /// </summary>
         [JsonProperty("maxLength")]
-        public int MaxLength { get; set; }
+        public int? MaxLength { get; set; }
 
         /// <summary>
         /// Whether this text box is mandatory

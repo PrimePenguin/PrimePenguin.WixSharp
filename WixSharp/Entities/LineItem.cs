@@ -21,7 +21,7 @@ namespace WixSharp.Entities
         /// Line item quantity
         /// </summary>
         [JsonProperty("quantity")]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         /// <summary>
         /// Line item sku
@@ -76,6 +76,25 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("mediaItem")]
         public MediaItem MediaItem { get; set; }
+
+        /// <summary>
+        /// Line item variantId (from Stores Catalog)
+        /// </summary>
+        [JsonProperty("variantId")]
+        public string VariantId { get; set; }
+
+        /// <summary>
+        /// Line item fulfillerId from stores fulfillers. No value means self fulfilled
+        /// </summary>
+        [JsonProperty("fulfillerId")]
+        public string FulfillerId { get; set; }
+
+        /// <summary>
+        /// Line item ID (auto-generated, stable within this order only)
+        /// </summary>
+        [JsonProperty("index")]
+        public int Index { get; set; }
+
     }
 
     public enum LineItemType

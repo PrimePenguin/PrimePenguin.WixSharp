@@ -15,7 +15,7 @@ namespace WixSharp.Entities
         /// ID displayed in the owner's store (auto generated).
         /// </summary>
         [JsonProperty("number")]
-        public int Number { get; set; }
+        public int? Number { get; set; }
 
         /// <summary>
         /// Order archive status
@@ -107,12 +107,31 @@ namespace WixSharp.Entities
         [JsonProperty("fulfillmentStatus")]
         public FulfillmentStatus FulfillmentStatus { get; set; }
 
+        /// <summary>
+        /// Custom field    
+        /// </summary>
+        [JsonProperty("customField")]
+        public CustomField CustomField { get; set; }
+
+        /// <summary>
+        /// Applied discount
+        /// </summary>
+        [JsonProperty("discount")]
+        public Discount Discount { get; set; }
+
+        /// <summary>
+        /// Order fulfillments
+        /// </summary>
+        [JsonProperty("fulfillments")]
+        public List<Fulfillments> FulFillments { get; set; }  
+
     }
     public enum PaymentStatus
     {
         UNSPECIFIED_PAYMENT_STATUS,
         NOT_PAID,
         PAID,
+        PARTIALLY_REFUNDED,
         FULLY_REFUNDED
     }
 
@@ -126,7 +145,8 @@ namespace WixSharp.Entities
     public enum FulfillmentStatus
     {
         NOT_FULFILLED,
-        FULFILLED
+        FULFILLED,
+        CANCELED
     }
 
     public class GetOrderResponse

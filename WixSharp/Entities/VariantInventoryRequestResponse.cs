@@ -20,12 +20,17 @@ namespace WixSharp.Entities
         /// Whether the product is listed as in stock
         /// </summary>
         [JsonProperty("inStock")]
-        public bool InStock { get; set; }
+        public bool? InStock { get; set; }
 
         /// <summary>
         /// Quantity currently left in inventory(only returned when inventory is being tracked).
         /// </summary>
         [JsonProperty("quantity")]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
+    }
+    public class VariantInventoryResponse
+    {
+        [JsonProperty("variant")]
+        public VariantInventoryRequestResponse Variant { get; set; }
     }
 }

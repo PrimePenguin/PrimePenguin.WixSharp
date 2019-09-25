@@ -20,13 +20,13 @@ namespace WixSharp.Entities
         /// Media URL
         /// </summary>
         [JsonProperty("width")]
-        public int Width { get; set; }
+        public int? Width { get; set; }
 
         /// <summary>
         /// Media item height
         /// </summary>
         [JsonProperty("height")]
-        public int Height { get; set; }
+        public int? Height { get; set; }
     }
 
     public enum MediaType
