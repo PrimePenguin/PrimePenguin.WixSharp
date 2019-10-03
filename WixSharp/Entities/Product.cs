@@ -7,7 +7,7 @@ namespace WixSharp.Entities
     {
         public Product()
         {
-            Variants=new List<Variants>();
+            Variants = new List<Variants>();
         }
 
         /// <summary>

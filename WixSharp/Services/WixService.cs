@@ -227,13 +227,15 @@ namespace WixSharp.Services
 
                 if (errors == null)
                 {
+                    var innerExceptionMesage = JsonConvert.DeserializeObject<WixExceptionMesage>(rawResponse);
+                    message = $"{message}-{innerExceptionMesage.Message}";
                     errors = new Dictionary<string, IEnumerable<string>>
                     {
-                            {
-                                $"{(int)code} {response.ReasonPhrase}",
-                                new[] { message }
-                            }
-                        };
+                        {
+                            $"{(int) code} {response.ReasonPhrase}",
+                            new[] {$"{message}-{innerExceptionMesage.Message}"}
+                        }
+                    };
                 }else
                 {
                     var firstError = errors.First();

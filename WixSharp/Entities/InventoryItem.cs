@@ -25,6 +25,9 @@ namespace WixSharp.Entities
 
     public class InventoryItemStatus
     {
+        /// <summary>
+        ///  inventory item
+        /// </summary>
         [JsonProperty("item")]
         public InventoryItem InventoryItem { get; set; }
     }

@@ -4,6 +4,10 @@ namespace WixSharp.Entities
 {
     public class FulFillmentResponse
     {
-        [JsonProperty("id")] public string Id { get; set; }
+        /// <summary>
+        /// Fulfillment id
+        /// </summary>
+        [JsonProperty("id")]
+        public string Id { get; set; }
     }
 }
