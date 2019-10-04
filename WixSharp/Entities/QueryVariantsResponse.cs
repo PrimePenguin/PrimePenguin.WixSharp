@@ -48,8 +48,8 @@ namespace WixSharp.Entities
         /// <summary>
         /// Variant price
         /// </summary>
-        [JsonProperty("price")]
-        public Price Price { get; set; }
+        [JsonProperty("priceData")]
+        public Price PriceData { get; set; }
 
         /// <summary>
         /// Variant Weight
