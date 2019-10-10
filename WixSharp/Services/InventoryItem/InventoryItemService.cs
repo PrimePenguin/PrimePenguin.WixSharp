@@ -68,7 +68,7 @@ namespace WixSharp.Services.InventoryItem
         /// <param name="variantInventoryRequest">The <see cref="ItemInventoryStatus"/> to update.</param>
         /// <returns>Returns an empty object..</returns>
         public virtual async Task<object> UpdateVariantInventoryStatusAsync(string productInventoryItemId,
-            string variantId, VariantInventoryRequestResponse variantInventoryRequest)
+            string variantId, VariantInventoryResponse variantInventoryRequest)
         {
             var req = PrepareRequest($"inventoryItems/{productInventoryItemId}/variants/{variantId}");
             HttpContent content = null;
