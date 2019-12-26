@@ -80,5 +80,61 @@ namespace WixSharp.Services.InventoryItem
             }
             return await ExecuteRequestAsync<object>(req, new HttpMethod("Patch"), content);
         }
+
+        /// <summary>
+        /// Get Inventory Variants  
+        /// </summary>
+        /// <param name="productInventoryItemId">Inventory item ID.</param>
+        /// <param name="request">Inventory variants request.</param>
+        /// <returns>The <see cref="VariantInventoryRequestResponse"/>.</returns>
+        public virtual async Task<InventoryVariantsResponse> GetInventoryVariants(string productInventoryItemId, InventoryVariantsRequest request)
+        {
+            var req = PrepareRequestV2($"inventoryItems/{productInventoryItemId}/getVariants");
+            HttpContent content = null;
+
+            if (request != null)
+            {
+                var body = request.ToDictionary();
+                content = new JsonContent(body);
+            }
+            return await ExecuteRequestAsync<InventoryVariantsResponse>(req, HttpMethod.Post, content);
+        }
+
+        /// <summary>
+        /// Query Inventory 
+        /// </summary>
+        /// <param name="request">Query inventory request.</param>
+        /// <returns>The <see cref="VariantInventoryRequestResponse"/>.</returns>
+        public virtual async Task<QueryInventoryResponse> QueryInventory(QueryInventoryRequest request)
+        {
+            var req = PrepareRequestV2($"inventoryItems/query");
+            HttpContent content = null;
+
+            if (request != null)    
+            {
+                var body = request.ToDictionary();
+                content = new JsonContent(body);
+            }
+            return await ExecuteRequestAsync<QueryInventoryResponse>(req, HttpMethod.Post, content);
+        }
+
+        /// <summary>
+        /// Get Inventory Variants  
+        /// </summary>
+        /// <param name="productInventoryItemId">Inventory item ID.</param>
+        /// <param name="request">Inventory variants request.</param>
+        /// <returns>The <see cref="VariantInventoryRequestResponse"/>.</returns>
+        public virtual async Task<InventoryVariantsResponse> UpdateInventoryVariants(string productInventoryItemId, UpdateInventoryVariantsRequest request)
+        {
+            var req = PrepareRequestV2($"inventoryItems/{productInventoryItemId}");
+            HttpContent content = null;
+
+            if (request != null)
+            {
+                var body = request.ToDictionary();
+                content = new JsonContent(body);
+            }
+            return await ExecuteRequestAsync<InventoryVariantsResponse>(req, HttpMethod.Post, content);
+        }
     }
 }

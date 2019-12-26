@@ -27,6 +27,20 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("height")]
         public int? Height { get; set; }
+
+        [JsonProperty("altText")] public string AltText { get; set; }
+
+        /// <summary>
+        /// Media external URL
+        /// </summary>
+        [JsonProperty("externalImageUrl")]
+        public string ExternalImageUrl { get; set; }
+
+        /// <summary>
+        /// Media ID(for media items previously saved in Wix Media)
+        /// </summary>
+        [JsonProperty("mediaId")]
+        public string MediaId { get; set; }
     }
 
     public enum MediaType

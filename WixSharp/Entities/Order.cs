@@ -42,6 +42,24 @@ namespace WixSharp.Entities
         public string BuyerNote { get; set; }
 
         /// <summary>
+        /// ID of the cart this order was created from
+        /// </summary>
+        [JsonProperty("cartId")]
+        public string CartId { get; set; }
+
+        /// <summary>
+        /// Latest update timestamp
+        /// </summary>
+        [JsonProperty("lastUpdated")]
+        public string LastUpdated { get; set; }
+
+        /// <summary>
+        /// Language to be used when communicating with the customer For a site that supports multiple languages, this is the language the customer selected(otherwise this defaults to the site language)
+        /// </summary>
+        [JsonProperty("buyerLanguage")]
+        public string BuyerLanguage { get; set; }
+
+        /// <summary>
         /// Currency used for pricing in this store
         /// </summary>
         [JsonProperty("currency")]
@@ -123,7 +141,19 @@ namespace WixSharp.Entities
         /// Order fulfillments
         /// </summary>
         [JsonProperty("fulfillments")]
-        public List<Fulfillments> FulFillments { get; set; }  
+        public List<Fulfillments> FulFillments { get; set; }
+
+        /// <summary>
+        /// Identity of the order creator(in cases where the order was created on behalf of a buyer)
+        /// </summary>
+        [JsonProperty("enteredBy")]
+        public EnteredBy EnteredBy { get; set; }
+
+        /// <summary>
+        /// Sales channel that submitted this order
+        /// </summary>
+        [JsonProperty("channelInfo")]
+        public ChannelInfo ChannelInfo { get; set; }
 
     }
     public enum PaymentStatus
@@ -146,7 +176,8 @@ namespace WixSharp.Entities
     {
         NOT_FULFILLED,
         FULFILLED,
-        CANCELED
+        CANCELED,
+        PARTIALLY_FULFILLED
     }
 
     public class GetOrderResponse
@@ -156,5 +187,16 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("order")]
         public Order Order { get; set; }
+    }
+
+    public class EnteredBy
+    {
+        [JsonProperty("id")] public string Id { get; set; }
+
+        /// <summary>
+        /// One of USER.
+        /// </summary>
+        [JsonProperty("identityType")]
+        public string IdentityType { get; set; }
     }
 }

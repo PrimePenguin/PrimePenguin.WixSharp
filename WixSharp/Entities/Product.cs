@@ -129,6 +129,30 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("variants")]
         public List<Variants> Variants { get; set; }
+
+        /// <summary>
+        /// Timestamp when the product was last updated
+        /// </summary>
+        [JsonProperty("lastUpdated")]
+        public string LastUpdated { get; set; }
+
+        /// <summary>
+        /// A list of all collection IDs that this product is included in (writable via the Catalog > Collection APIs)
+        /// </summary>  
+        [JsonProperty("collectionIds")]
+        public List<string> CollectionIds { get; set; }
+
+        /// <summary>
+        /// Price data (fields requiring calculation are read-only)
+        /// </summary>
+        [JsonProperty("priceData")]
+        public PriceData PriceData { get; set; }    
+
+        /// <summary>
+        /// Discount taken off of the product's original price
+        /// </summary>
+        [JsonProperty("discount")]
+        public ProductDiscount Discount { get; set; }
     }
 
     public class ProductResponse

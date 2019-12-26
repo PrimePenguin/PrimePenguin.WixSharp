@@ -11,10 +11,10 @@ namespace WixSharp.Entities
         public string Value { get; set; }
 
         /// <summary>
-        /// Title that was entered by the store owner in the checkout settings for her main language
+        /// Title for the custom field
         /// </summary>
-        [JsonProperty("untranslatedTitle")]
-        public string UntranslatedTitle { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
 
         /// <summary>
         /// Translation of the title (as displayed during the checkout process)

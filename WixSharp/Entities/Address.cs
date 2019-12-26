@@ -5,12 +5,6 @@ namespace WixSharp.Entities
     public class Address
     {
         /// <summary>
-        /// Address line 1 (free text)
-        /// </summary>
-        [JsonProperty("addressLine1")]
-        public string AddressLine1 { get; set; }
-
-        /// <summary>
         /// City name
         /// </summary>
         [JsonProperty("city")]
@@ -65,15 +59,30 @@ namespace WixSharp.Entities
         public string Subdivision { get; set; }
 
         /// <summary>
-        /// Address line 1 (street)
-        /// </summary>
-        [JsonProperty("street")]
-        public Street Street { get; set; }
-
-        /// <summary>
         /// Phone number
         /// </summary>
         [JsonProperty("phone")]
         public string Phone { get; set; }
+            
+        /// <summary>
+        /// main address line
+        /// </summary>
+        [JsonProperty("addressLine1Options")]
+        public AddressLine1Options AddressLine1Options { get; set; }
+    }
+
+    public class AddressLine1Options
+    {
+        /// <summary>
+        /// Address line 1 (free text)
+        /// </summary>
+        [JsonProperty("addressLine1")]
+        public string AddressLine1 { get; set; }
+
+        /// <summary>
+        /// Address line 1 (street)
+        /// </summary>
+        [JsonProperty("street")]
+        public Street Street { get; set; }
     }
 }
