@@ -21,7 +21,7 @@ namespace WixSharp.Services.Order
         /// <param name="orderId">The id of the order to retrieve.</param>
         public virtual async Task<GetOrderResponse> GetAsync(string orderId)
         {
-            var req = PrepareRequestForOrders($"orders/{orderId}");
+            var req = PrepareRequestV2($"orders/{orderId}");
             return await ExecuteRequestAsync<GetOrderResponse>(req, HttpMethod.Get);
         }
 
@@ -30,9 +30,9 @@ namespace WixSharp.Services.Order
         /// </summary>
         /// <param name="query">provided paging, sorting and filtering.</param>
         /// <returns>The new <see cref="OrderQueryResponse"/>.</returns>
-        public virtual async Task<OrderQueryResponse> GetQueryOrdersAsync(OrderRootQuery query)
+        public virtual async Task<OrderQueryResponse> QueryOrders(OrderRootQuery query)
         {
-            var req = PrepareRequestForOrders("orders/query");
+            var req = PrepareRequestV2("orders/query");
             HttpContent content = null;
 
             if (query != null)
@@ -51,7 +51,7 @@ namespace WixSharp.Services.Order
         /// <returns>The new <see cref="Entities.Product"/>.</returns>
         public virtual async Task<FulFillmentResponse> CreateFulfillment(string orderId, CreateFulFillment fulfillment)
         {
-            var req = PrepareRequestForOrders($"orders/{orderId}/fulfillments");
+            var req = PrepareRequestV2($"orders/{orderId}/fulfillments");
             HttpContent content = null;
 
             if (fulfillment != null)
@@ -69,11 +69,29 @@ namespace WixSharp.Services.Order
         /// <param name="fulfillmentId">Fulfillment ID</param>
         /// <param name="fulfillmentTrackingInfo">Updated tracking info</param>
         /// <returns>Returns an empty object.</returns>
-        public virtual async Task UpdateFulfillment(string orderId, string fulfillmentId,
-            FulfillmentTrackingInfo fulfillmentTrackingInfo)
+        public virtual async Task<Entities.Order> UpdateFulfillment(string orderId, string fulfillmentId, FulfillmentTrackingInfo fulfillmentTrackingInfo)
         {
-            var req = PrepareRequestForOrders($"orders/{orderId}/fulfillments/{fulfillmentId}");
-            await ExecuteRequestAsync<object>(req, HttpMethod.Put);
+            var req = PrepareRequestV2($"orders/{orderId}/fulfillments/{fulfillmentId}");
+            HttpContent content = null;
+
+            if (fulfillmentTrackingInfo != null)
+            {
+                var body = fulfillmentTrackingInfo.ToDictionary();
+                content = new JsonContent(body);
+            }
+            return await ExecuteRequestAsync<Entities.Order>(req, HttpMethod.Put, content);
+        }
+
+        /// <summary>
+        /// Deletes an existing fulfillment
+        /// </summary>
+        /// <param name="orderId">Order ID</param>
+        /// <param name="fulfillmentId">Fulfillment ID</param>
+        /// <returns>Returns Updated order data.</returns>
+        public virtual async Task<Entities.Order> DeleteFulfillment(string orderId, string fulfillmentId)
+        {
+            var req = PrepareRequestV2($"orders/{orderId}/fulfillments/{fulfillmentId}");
+            return await ExecuteRequestAsync<Entities.Order>(req, HttpMethod.Delete);
         }
     }
 }

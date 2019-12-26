@@ -11,11 +11,22 @@ namespace WixSharp.Entities
         public string DeliveryOption { get; set; }
 
         /// <summary>
+        /// Latest expected delivery date
+        /// </summary>
+        [JsonProperty("deliverByDate")]
+        public string DeliverByDate { get; set; }
+
+        /// <summary>
         /// Shipping option delivery time
         /// </summary>
         [JsonProperty("estimatedDeliveryTime")]
         public string EstimatedDeliveryTime { get; set; }
 
+        [JsonProperty("details")] public Details Details { get; set; }
+    }
+
+    public class Details
+    {
         /// <summary>
         /// Shipment details (when this object describes shipment)
         /// </summary>

@@ -30,6 +30,30 @@ namespace WixSharp.Entities
         public string Sku { get; set; }
 
         /// <summary>
+        /// Tax applied for this line item
+        /// </summary>
+        [JsonProperty("tax")]
+        public string Tax { get; set; }
+
+        /// <summary>
+        /// Product name, translated into the customer's language
+        /// </summary>
+        [JsonProperty("translatedName")]
+        public string TranslatedName { get; set; }
+
+        /// <summary>
+        /// Tax group ID
+        /// </summary>
+        [JsonProperty("taxGroupId")]
+        public string TaxGroupId { get; set; }
+
+        /// <summary>
+        /// Whether tax is included in the price set for this line item
+        /// </summary>
+        [JsonProperty("taxIncludedInPrice")]
+        public bool TaxIncludedInPrice { get; set; }
+
+        /// <summary>
         /// Line item type(may be extended)
         /// </summary>
         [JsonProperty("lineItemType")]
@@ -76,6 +100,12 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("mediaItem")]
         public MediaItem MediaItem { get; set; }
+
+        /// <summary>
+        /// Discount applied for this line item
+        /// </summary>
+        [JsonProperty("discount")]
+        public string Discount { get; set; }
 
         /// <summary>
         /// Line item variantId (from Stores Catalog)

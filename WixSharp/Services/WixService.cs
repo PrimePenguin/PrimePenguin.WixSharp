@@ -63,7 +63,7 @@ namespace WixSharp.Services
 
         public static Uri BuildWixApiUriForAppInstance()
         {
-            var wixApiUrl = "dev.wix.com";
+            var wixApiUrl = "www.wixapis.com";
             if (Uri.IsWellFormedUriString(wixApiUrl, UriKind.Absolute) == false)
             {
                 wixApiUrl = "https://" + wixApiUrl;
@@ -73,7 +73,7 @@ namespace WixSharp.Services
             {
                 Scheme = "https:",
                 Port = 443, //SSL port
-                Path = ""
+                Path = "api/v1"
             };
 
             return builder.Uri;
@@ -120,7 +120,7 @@ namespace WixSharp.Services
             return new RequestUri(ub.Uri);
         }
 
-        protected RequestUri PrepareRequestForOrders(string path)
+        protected RequestUri PrepareRequestV2(string path)
         {
             var ub = new UriBuilder(_ShopUri)
             {

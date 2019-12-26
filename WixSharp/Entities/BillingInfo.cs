@@ -27,5 +27,17 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("paidDate")]
         public string PaidDate { get; set; }
+
+        /// <summary>
+        /// Transaction ID from payment provider (e.g., PayPal, Square, Stripe) transaction ID
+        /// </summary>
+        [JsonProperty("paymentProviderTransactionId")]
+        public string PaymentProviderTransactionId { get; set; }
+
+        /// <summary>
+        /// Transaction ID from payment gateway(e.g., Wix Payments)
+        /// </summary>
+        [JsonProperty("paymentGatewayTransactionId")]
+        public string PaymentGatewayTransactionId { get; set; }
     }
 }

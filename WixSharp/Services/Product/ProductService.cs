@@ -216,5 +216,43 @@ namespace WixSharp.Services.Product
             }
             await ExecuteRequestAsync<object>(req, HttpMethod.Post, content);
         }
+
+        /// <summary>
+        /// Links media items that are already associated with a specific product to a choice within the same product.
+        /// </summary>
+        /// <param name="productId">Product ID</param>
+        /// <param name="media">Media to be added to the product</param>
+        /// <returns>Returns an empty object.</returns>
+        public virtual async Task AddProductMediaToChoices(string productId, List<ProductMediaChoices> media)
+        {
+            var req = PrepareRequest($"products/{productId}/choices/media");
+            HttpContent content = null;
+
+            if (media.Any())
+            {
+                var body = media.ToDictionary(x=>x);
+                content = new JsonContent(body);
+            }
+            await ExecuteRequestAsync<object>(req, HttpMethod.Post, content);
+        }
+
+        /// <summary>
+        /// Removes media items from all or some of a product's choices. (Media items can only be set for choices within one option at a time - e.g., if you set media items for some or all of the choices within the Colors option (blue, green, and red), you won't be able to also assign media items to choices within the Size option (S, M, and L).)
+        /// </summary>
+        /// <param name="productId"> ID of product to be deleted</param>
+        /// <param name="media">Optional - if not provided all media will be removed from all choices</param>
+        /// <returns>Returns an empty object.</returns>
+        public virtual async Task RemoveProductMediaFromChoices(string productId, List<ProductMediaChoices> media)
+        {
+            var req = PrepareRequest($"products/{productId}/choices/media/delete");
+            HttpContent content = null;
+
+            if (media != null)
+            {
+                var body = media.ToDictionary(x=>x);
+                content = new JsonContent(body);
+            }
+            await ExecuteRequestAsync<object>(req, HttpMethod.Post, content);
+        }
     }
 }

@@ -24,6 +24,10 @@ namespace WixSharp.Entities
         [JsonProperty("lineItems")]
         public List<FulfillmentLineItem> FulfillmentLineItems { get; set; }
 
+        /// <summary>
+        /// Tracking Info
+        /// </summary>
+        [JsonProperty("trackingInfo")]
         public TrackingInfo TrackingInfo { get; set; }
     }
 }

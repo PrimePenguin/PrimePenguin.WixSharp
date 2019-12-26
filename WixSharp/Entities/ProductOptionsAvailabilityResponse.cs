@@ -5,20 +5,41 @@ namespace WixSharp.Entities
 {
     public class SelectedVariant
     {
+        /// <summary>
+        /// Variant price
+        /// </summary>
         [JsonProperty("price")]
         public Price Price { get; set; }
 
+        /// <summary>
+        /// Variant weight
+        /// </summary>
         [JsonProperty("weight")]
         public int Weight { get; set; }
 
+        /// <summary>
+        /// Variant SKU (stock keeping unit)
+        /// </summary>
         [JsonProperty("sku")]
         public string Sku { get; set; }
 
+        /// <summary>
+        /// Whether the product is currently in stock (relevant only when tracking manually)
+        /// </summary>
         [JsonProperty("inStock")]
         public bool InStock { get; set; }
 
+        /// <summary>
+        /// Whether the variant is visible to customers
+        /// </summary>
         [JsonProperty("visible")]
         public bool Visible { get; set; }
+
+        /// <summary>
+        /// Quantity currently in inventory (relevant only when tracking by inventory)
+        /// </summary>
+        [JsonProperty("quantity")]
+        public string Quantity { get; set; }
     }
 
     public class ProductOption
