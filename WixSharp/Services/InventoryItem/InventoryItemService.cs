@@ -119,7 +119,7 @@ namespace WixSharp.Services.InventoryItem
         }
 
         /// <summary>
-        /// Get Inventory Variants  
+        /// Update Inventory Variants  
         /// </summary>
         /// <param name="productInventoryItemId">Inventory item ID.</param>
         /// <param name="request">Inventory variants request.</param>

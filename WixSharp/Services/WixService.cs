@@ -63,7 +63,7 @@ namespace WixSharp.Services
 
         public static Uri BuildWixApiUriForAppInstance()
         {
-            var wixApiUrl = "www.wixapis.com";
+            var wixApiUrl = "dev.wix.com";
             if (Uri.IsWellFormedUriString(wixApiUrl, UriKind.Absolute) == false)
             {
                 wixApiUrl = "https://" + wixApiUrl;
@@ -73,7 +73,7 @@ namespace WixSharp.Services
             {
                 Scheme = "https:",
                 Port = 443, //SSL port
-                Path = "api/v1"
+                Path = "",
             };
 
             return builder.Uri;
