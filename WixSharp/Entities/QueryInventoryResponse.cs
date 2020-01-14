@@ -40,7 +40,7 @@ namespace WixSharp.Entities
         /// Inventory’s unique numeric ID (assigned in ascending order). Primarily for sorting and filtering when crawling all inventories
         /// </summary>
         [JsonProperty("numericId")]
-        public int NumericId { get; set; }
+        public string NumericId { get; set; }
 
         /// <summary>
         /// Variants associated with this inventory item
