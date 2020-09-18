@@ -44,5 +44,11 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("includeVariants")]
         public bool IncludeVariants { get; set; }
+
+        /// <summary>
+        /// Whether hidden products should be included in the response. Requires permissions to manage products.
+        /// </summary>
+        [JsonProperty("includeHiddenProducts")]
+        public bool IncludeHiddenProducts { get; set; }
     }
 }

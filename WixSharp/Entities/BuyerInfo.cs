@@ -33,18 +33,5 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("email")]
         public string Email { get; set; }
-
-        /// <summary>
-        /// Customer type
-        /// </summary>
-        [JsonProperty("identityType")]
-        public IdentityType Type { get; set; }
-    }
-
-    public enum IdentityType
-    {
-        UNSPECIFIED_IDENTITY_TYPE,
-        MEMBER,
-        CONTACT
     }
 }

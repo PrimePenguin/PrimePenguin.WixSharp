@@ -7,7 +7,7 @@ namespace WixSharp.Services.Order
     public class Fulfillment
     {
         /// <summary>
-        /// Line items(corresponding to line items in the designated order)
+        /// Information about the line items in the fulfilled order.
         /// </summary>
         [JsonProperty("lineItems")]
         public List<FulfillmentLineItem> FulfillmentLineItems { get; set; }

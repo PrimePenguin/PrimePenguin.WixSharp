@@ -1,16 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace WixSharp.Entities
 {
     public class Order
     {
-        /// <summary>
-        /// Whether the order was read by the store owner.
-        /// </summary>
-        [JsonProperty("read")]
-        public bool Read { get; set; }
-
         /// <summary>
         /// ID displayed in the owner's store (auto generated).
         /// </summary>
@@ -120,7 +115,7 @@ namespace WixSharp.Entities
         public Total Totals { get; set; }
 
         /// <summary>
-        /// Order fulfillment status
+        /// Order fulfillment status <para> Order's current fulfillment status (whether the order received a tracking number or was delivered/picked up).</para>
         /// </summary>
         [JsonProperty("fulfillmentStatus")]
         public FulfillmentStatus FulfillmentStatus { get; set; }
@@ -138,7 +133,7 @@ namespace WixSharp.Entities
         public Discount Discount { get; set; }
 
         /// <summary>
-        /// Order fulfillments
+        /// Order fulfillment information
         /// </summary>
         [JsonProperty("fulfillments")]
         public List<Fulfillments> FulFillments { get; set; }
@@ -155,21 +150,67 @@ namespace WixSharp.Entities
         [JsonProperty("channelInfo")]
         public ChannelInfo ChannelInfo { get; set; }
 
+        /// <summary>
+        /// refunds of order
+        /// </summary>
+        [JsonProperty("refunds")]
+        public List<Refund> Refunds { get; set; }
     }
+
+    public class Refund
+    {
+        /// <summary>
+        /// Payment provider transaction ID. Used to find refund transaction info on the payment provider's side.
+        /// </summary>
+        [JsonProperty("paymentProviderTransactionId")]
+        public string PaymentProviderTransactionId { get; set; }
+
+        /// <summary>
+        /// Reason for refund, given by user (optional).
+        /// </summary>
+        [JsonProperty("reason")]
+        public string Reason { get; set; }
+
+        /// <summary>
+        /// Refund amount.
+        /// </summary>
+        [JsonProperty("amount")]
+        public string Amount { get; set; }
+
+        /// <summary>
+        /// Refund ID.
+        /// </summary>
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Refund created timestamp.
+        /// </summary>
+        [JsonProperty("dateCreated")]
+        public string DateCreated { get; set; }
+
+        /// <summary>
+        /// Whether refund was made externally (on the payment provider's side).
+        /// </summary>
+        [JsonProperty("externalRefund")]
+        public bool ExternalRefund { get; set; }
+    }
+
     public enum PaymentStatus
     {
         UNSPECIFIED_PAYMENT_STATUS,
         NOT_PAID,
         PAID,
         PARTIALLY_REFUNDED,
-        FULLY_REFUNDED
+        FULLY_REFUNDED,
+        PENDING
     }
 
     public enum WeightUnit
     {
         UNSPECIFIED_WEIGHT_UNIT,
         KG,
-        LB 
+        LB
     }
 
     public enum FulfillmentStatus
@@ -181,7 +222,7 @@ namespace WixSharp.Entities
     }
 
     public class GetOrderResponse
-    {   
+    {
         /// <summary>
         /// Order object
         /// </summary>

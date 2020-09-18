@@ -85,20 +85,13 @@ namespace WixSharp.Services.InventoryItem
         /// Get Inventory Variants  
         /// </summary>
         /// <param name="productInventoryItemId">Inventory item ID.</param>
-        /// <param name="request">Inventory variants request.</param>
         /// <returns>The <see cref="VariantInventoryRequestResponse"/>.</returns>
-        public virtual async Task<InventoryVariantsResponse> GetInventoryVariants(string productInventoryItemId, InventoryVariantsRequest request)
+        public virtual async Task<VariantsWithInventoryResponse> GetInventoryVariants(string productInventoryItemId)
         {
             var req = PrepareRequestV2($"inventoryItems/{productInventoryItemId}/getVariants");
-            HttpContent content = null;
-
-            if (request != null)
-            {
-                var body = request.ToDictionary();
-                content = new JsonContent(body);
-            }
-            return await ExecuteRequestAsync<InventoryVariantsResponse>(req, HttpMethod.Post, content);
+            return await ExecuteRequestAsync<VariantsWithInventoryResponse>(req, HttpMethod.Post, null);
         }
+
 
         /// <summary>
         /// Query Inventory 

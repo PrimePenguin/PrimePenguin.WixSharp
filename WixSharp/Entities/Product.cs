@@ -11,7 +11,13 @@ namespace WixSharp.Entities
         }
 
         /// <summary>
-        /// Product weight
+        /// Product inventory status
+        /// </summary>
+        [JsonProperty("stock")]
+        public Stock Stock { get; set; }
+
+        /// <summary>
+        /// Product weight (if variant management is enabled, weight will be set per variant, and this field will be empty).
         /// </summary>
         [JsonProperty("weight")]
         public double Weight { get; set; }
@@ -29,16 +35,28 @@ namespace WixSharp.Entities
         public string Sku { get; set; }
 
         /// <summary>
+        /// A list of all collection IDs that this product is included in (writable via the Catalog > Collection APIs)
+        /// </summary>  
+        [JsonProperty("collectionIds")]
+        public List<string> CollectionIds { get; set; }
+
+        /// <summary>
         /// Whether the product is visible to customers
         /// </summary>
         [JsonProperty("visible")]
         public bool Visible { get; set; }
 
         /// <summary>
-        /// Product description
+        /// Date and time the product was last updated.
         /// </summary>
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonProperty("lastUpdated")]
+        public string LastUpdated { get; set; }
+
+        /// <summary>
+        /// Options (color, size etc) for this product
+        /// </summary>
+        [JsonProperty("productOptions")]
+        public IEnumerable<ProductOptions> ProductOptions { get; set; }
 
         /// <summary>
         /// A permanent, friendly URL name(generated automatically by the catalog)
@@ -47,40 +65,16 @@ namespace WixSharp.Entities
         public string Slug { get; set; }
 
         /// <summary>
+        /// Product description
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        /// <summary>
         /// Product ID (generated automatically by the catalog)
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
-
-        /// <summary>
-        /// Product’s unique numeric ID(assigned in ascending order) Promarily for sorting and filtering when crawling all products
-        /// </summary>
-        [JsonProperty("numericId")]
-        public string NumericId { get; set; }
-
-        /// <summary>
-        /// Whether variants are being managed for this product
-        /// </summary>
-        [JsonProperty("manageVariants")]
-        public bool ManageVariants { get; set; }
-
-        /// <summary>
-        /// Inventory item ID - ID referencing the inventory system
-        /// </summary>
-        [JsonProperty("inventoryItemId")]
-        public string InventoryItemId { get; set; }
-
-        /// <summary>
-        /// Product inventory status
-        /// </summary>
-        [JsonProperty("stock")]
-        public Stock Stock { get; set; }
-
-        /// <summary>
-        /// Product price
-        /// </summary>
-        [JsonProperty("price")]
-        public Price Price { get; set; }
 
         /// <summary>
         /// Product type: physical/digital
@@ -89,10 +83,22 @@ namespace WixSharp.Entities
         public ProductType ProductType { get; set; }
 
         /// <summary>
+        /// Price Data
+        /// </summary>
+        [JsonProperty("priceData")]
+        public ProductPriceData ProductPriceData { get; set; }
+
+        /// <summary>
         /// Optional text marker that store owners can add to specific products (e.g., sale, new arrival)
         /// </summary>
         [JsonProperty("ribbons")]
         public IEnumerable<Ribbon> Ribbons { get; set; }
+
+        /// <summary>
+        /// pricePerUnitData
+        /// </summary>
+        [JsonProperty("pricePerUnitData")]
+        public PricePerUnitData PricePerUnitData { get; set; }
 
         /// <summary>
         /// Text box for the customer to add a message to their order (e.g., customization request)
@@ -107,6 +113,24 @@ namespace WixSharp.Entities
         public Media Media { get; set; }
 
         /// <summary>
+        /// Product’s unique numeric ID(assigned in ascending order) Primarily for sorting and filtering when crawling all products
+        /// </summary>
+        [JsonProperty("numericId")]
+        public string NumericId { get; set; }
+
+        /// <summary>
+        /// Whether variants are being managed for this product - enables unique SKU, price and weight per variant. Also affects inventory data.
+        /// </summary>
+        [JsonProperty("manageVariants")]
+        public bool ManageVariants { get; set; }
+
+        /// <summary>
+        /// Inventory item ID - ID referencing the inventory system
+        /// </summary>
+        [JsonProperty("inventoryItemId")]
+        public string InventoryItemId { get; set; }
+
+        /// <summary>
         /// Product page URL for this product(generated automatically by the server)
         /// </summary>
         [JsonProperty("productPageUrl")]
@@ -119,44 +143,118 @@ namespace WixSharp.Entities
         public IEnumerable<AdditionalInfoSection> AdditionalInfoSections { get; set; }
 
         /// <summary>
-        /// Options (color, size etc) for this product
-        /// </summary>
-        [JsonProperty("productOptions")]
-        public IEnumerable<ProductOptions> ProductOptions { get; set; }
-
-        /// <summary>
-        /// All variants
+        /// Product variants, will be provided if the the request was sent with the includeVariants flag.
         /// </summary>
         [JsonProperty("variants")]
         public List<Variants> Variants { get; set; }
-
-        /// <summary>
-        /// Timestamp when the product was last updated
-        /// </summary>
-        [JsonProperty("lastUpdated")]
-        public string LastUpdated { get; set; }
-
-        /// <summary>
-        /// A list of all collection IDs that this product is included in (writable via the Catalog > Collection APIs)
-        /// </summary>  
-        [JsonProperty("collectionIds")]
-        public List<string> CollectionIds { get; set; }
-
-        /// <summary>
-        /// Price data (fields requiring calculation are read-only)
-        /// </summary>
-        [JsonProperty("priceData")]
-        public PriceData PriceData { get; set; }    
 
         /// <summary>
         /// Discount taken off of the product's original price
         /// </summary>
         [JsonProperty("discount")]
         public ProductDiscount Discount { get; set; }
+
+        /// <summary>
+        /// Price data, converted to the currency specified in request header.
+        /// </summary>
+        [JsonProperty("convertedPriceData")]
+        public ConvertedPriceData ConvertedPriceData { get; set; }
+    }
+
+    public class ConvertedPriceData
+    {
+        /// <summary>
+        /// Discounted product price (if no discounted price is set, the product price is returned)
+        /// </summary>
+        [JsonProperty("discountedPrice")]
+        public string DiscountedPrice { get; set; }
+
+        /// <summary>
+        /// Product price
+        /// </summary>
+        [JsonProperty("price")]
+        public string Price { get; set; }
+
+        /// <summary>
+        /// The product price and discounted price, formatted with the currency
+        /// </summary>
+        [JsonProperty("formatted")]
+        public Formatted Formatted { get; set; }
+
+        /// <summary>
+        /// Price per unit
+        /// </summary>
+        [JsonProperty("pricePerUnit")]
+        public string PricePerUnit { get; set; }
+
+        /// <summary>
+        /// Product price currency
+        /// </summary>
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+    }
+
+    public class ProductPriceData
+    {
+        /// <summary>
+        /// Discounted product price (if no discounted price is set, the product price is returned)
+        /// </summary>
+        [JsonProperty("discountedPrice")]
+        public string DiscountedPrice { get; set; }
+
+        /// <summary>
+        /// Product price
+        /// </summary>
+        [JsonProperty("price")]
+        public string Price { get; set; }
+
+        /// <summary>
+        /// Price per unit
+        /// </summary>
+        [JsonProperty("pricePerUnit")]
+        public string PricePerUnit { get; set; }
+
+        /// <summary>
+        /// Product price currency
+        /// </summary>
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+
+        /// <summary>
+        /// price per unit data
+        /// </summary>
+        [JsonProperty("formatted")]
+        public Formatted Formatted { get; set; }
+    }
+
+    public class PricePerUnitData
+    {
+        /// <summary>
+        /// Total quantity
+        /// </summary>
+        [JsonProperty("totalQuantity")]
+        public string TotalQuantity { get; set; }
+
+        /// <summary>
+        /// Supported values: UNSPECIFIED, ML, CL, L, CBM, MG, G, KG, MM, CM, M, SQM, OZ, LB, FLOZ, PT, QT, GAL, IN, FT, YD, SQFT. Total measurement unit
+        /// </summary>
+        [JsonProperty("totalMeasurementUnit")]
+        public string TotalMeasurementUnit { get; set; }
+
+        /// <summary>
+        /// Base quantity
+        /// </summary>
+        [JsonProperty("baseQuantity")]
+        public string BaseQuantity { get; set; }
+
+        /// <summary>
+        /// Supported values: UNSPECIFIED, ML, CL, L, CBM, MG, G, KG, MM, CM, M, SQM, OZ, LB, FLOZ, PT, QT, GAL, IN, FT, YD, SQFT.Base measurement unit
+        /// </summary>
+        public string BaseMeasurementUnit { get; set; }
     }
 
     public class ProductResponse
-    {      
+    {
         /// <summary>
         /// Product Response
         /// </summary>

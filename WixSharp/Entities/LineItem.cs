@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace WixSharp.Entities
@@ -48,28 +49,16 @@ namespace WixSharp.Entities
         public string TaxGroupId { get; set; }
 
         /// <summary>
-        /// Whether tax is included in the price set for this line item
-        /// </summary>
-        [JsonProperty("taxIncludedInPrice")]
-        public bool TaxIncludedInPrice { get; set; }
-
-        /// <summary>
         /// Line item type(may be extended)
         /// </summary>
         [JsonProperty("lineItemType")]
         public LineItemType LineItemType { get; set; }
 
         /// <summary>
-        /// Line item price
+        /// Price data
         /// </summary>
-        [JsonProperty("price")]
-        public string Price { get; set; }
-
-        /// <summary>
-        /// Total price charged to the customer (for all line items) after computation of quantity and discount
-        /// </summary>
-        [JsonProperty("totalPrice")]
-        public string TotalPrice { get; set; }
+        [JsonProperty("priceData")]
+        public LineItemPriceData PriceData { get; set; }
 
         /// <summary>
         /// Line item options ordered
@@ -125,6 +114,27 @@ namespace WixSharp.Entities
         [JsonProperty("index")]
         public int Index { get; set; }
 
+    }
+
+    public class LineItemPriceData
+    {
+        /// <summary>
+        /// Whether tax is included in the price set for this line item
+        /// </summary>
+        [JsonProperty("taxIncludedInPrice")]
+        public bool TaxIncludedInPrice { get; set; }
+
+        /// <summary>
+        /// Line item price
+        /// </summary>
+        [JsonProperty("price")]
+        public string Price { get; set; }
+
+        /// <summary>
+        /// Total price charged to the customer (per line item) after computation of quantity and discount
+        /// </summary>
+        [JsonProperty("totalPrice")]
+        public string TotalPrice { get; set; }
     }
 
     public enum LineItemType

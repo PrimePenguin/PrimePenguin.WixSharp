@@ -36,11 +36,7 @@ namespace WixSharp.Entities
         [JsonProperty("variant")]
         public Variant Variant { get; set; }
 
-        /// <summary>
-        /// Variant inventory status
-        /// </summary>
-        [JsonProperty("variantInventoryStatus")]
-        public VariantInventoryRequestResponse VariantInventoryStatus { get; set; }
+        public VariantWithInventory VariantInventory { get; set; }
     }
 
     public class Variant
@@ -49,7 +45,7 @@ namespace WixSharp.Entities
         /// Variant price
         /// </summary>
         [JsonProperty("priceData")]
-        public Price PriceData { get; set; }
+        public VariantPriceData VariantPriceData { get; set; }
 
         /// <summary>
         /// Variant Weight
@@ -68,5 +64,44 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("visible")]
         public bool Visible { get; set; }
+
+        /// <summary>
+        /// Variant price data, converted to currency requested in header
+        /// </summary>
+        [JsonProperty("convertedPriceData")]
+        public ConvertedPriceData ConvertedPriceData { get; set; }
+    }
+
+    public class VariantPriceData
+    {
+        /// <summary>
+        /// Product price currency
+        /// </summary>
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+
+        /// <summary>
+        /// Price per unit
+        /// </summary>
+        [JsonProperty("pricePerUnit")]
+        public string PricePerUnit { get; set; }
+
+        /// <summary>
+        /// Product price
+        /// </summary>
+        [JsonProperty("price")]
+        public string ProductPrice { get; set; }
+
+        /// <summary>
+        /// Discounted product price(if no discounted price is set, the product price is returned)
+        /// </summary>
+        [JsonProperty("discountedPrice")]
+        public string DiscountedPrice { get; set; }
+
+        /// <summary>
+        /// The product price and discounted price, formatted with the currency
+        /// </summary>
+        [JsonProperty("formatted")]
+        public Formatted Formatted { get; set; }
     }
 }

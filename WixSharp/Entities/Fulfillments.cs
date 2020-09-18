@@ -13,13 +13,13 @@ namespace WixSharp.Entities
         public string Id { get; set; }
 
         /// <summary>
-        /// Date generated
+        /// Fulfillment creation date and time.
         /// </summary>
         [JsonProperty("dateCreated")]
         public string DateCreated { get; set; }
 
         /// <summary>
-        /// lineItems
+        ///  Information about the line items in the fulfilled order.
         /// </summary>
         [JsonProperty("lineItems")]
         public List<FulfillmentLineItem> FulfillmentLineItems { get; set; }

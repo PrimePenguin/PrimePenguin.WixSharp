@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace WixSharp.Entities
 {
@@ -35,12 +36,6 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("externalImageUrl")]
         public string ExternalImageUrl { get; set; }
-
-        /// <summary>
-        /// Media ID(for media items previously saved in Wix Media)
-        /// </summary>
-        [JsonProperty("mediaId")]
-        public string MediaId { get; set; }
     }
 
     public enum MediaType

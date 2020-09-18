@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace WixSharp.Entities
 {
@@ -9,12 +10,6 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("paymentMethod")]
         public string PaymentMethod { get; set; }
-
-        /// <summary>
-        /// External transaction ID
-        /// </summary>
-        [JsonProperty("externalTransactionId")]
-        public string ExternalTransactionId { get; set; }
 
         /// <summary>
         /// Full billing address

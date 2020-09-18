@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Org.BouncyCastle.Bcpg;
 
 namespace WixSharp.Entities
 {
@@ -15,5 +16,12 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("discountedPrice")]
         public string DiscountedPrice { get; set; }
+
+        /// <summary>
+        /// Price per unit
+        /// </summary>
+        [JsonProperty("pricePerUnit")]
+        public string PricePerUnit { get; set; }
+
     }
 }

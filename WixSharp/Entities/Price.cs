@@ -11,6 +11,12 @@ namespace WixSharp.Entities
         public string Currency { get; set; }
 
         /// <summary>
+        /// Price per unit
+        /// </summary>
+        [JsonProperty("pricePerUnit")]
+        public string PricePerUnit { get; set; }
+
+        /// <summary>
         /// Product price
         /// </summary>
         [JsonProperty("price")]

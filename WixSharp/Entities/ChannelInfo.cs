@@ -32,6 +32,8 @@ namespace WixSharp.Entities
         WEB,
         POS, 
         EBAY, 
-        AMAZON
+        AMAZON,
+        OTHER_PLATFORM,
+        WIX_APP_STORE
     }
 }

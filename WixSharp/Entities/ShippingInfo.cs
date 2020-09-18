@@ -22,21 +22,34 @@ namespace WixSharp.Entities
         [JsonProperty("estimatedDeliveryTime")]
         public string EstimatedDeliveryTime { get; set; }
 
-        [JsonProperty("details")] public Details Details { get; set; }
+        [JsonProperty("shipmentDetails")] public Details ShipmentDetails { get; set; }
     }
 
     public class Details
     {
-        /// <summary>
-        /// Shipment details (when this object describes shipment)
-        /// </summary>
-        [JsonProperty("shipmentDetails")]
-        public ShipmentDetails ShipmentDetails { get; set; }
 
         /// <summary>
-        /// Pickup details (when this object describes pickup)
+        /// Shipping destination address
         /// </summary>
-        [JsonProperty("pickupDetails")]
-        public PickupDetails PickupDetails { get; set; }
+        [JsonProperty("address")]
+        public Address Address { get; set; }
+
+        /// <summary>
+        /// Order tracking information
+        /// </summary>
+        [JsonProperty("trackingInfo")]
+        public TrackingInfo TrackingInfo { get; set; }
+
+        /// <summary>
+        /// Discount applied for shipping
+        /// </summary>
+        [JsonProperty("discount")]
+        public string Discount { get; set; }
+
+        /// <summary>
+        /// Tax applied for shipping
+        /// </summary>
+        [JsonProperty("tax")]
+        public string Tax { get; set; }
     }
 }
