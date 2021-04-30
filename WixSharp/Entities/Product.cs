@@ -36,7 +36,7 @@ namespace WixSharp.Entities
 
         /// <summary>
         /// A list of all collection IDs that this product is included in (writable via the Catalog > Collection APIs)
-        /// </summary>  
+        /// </summary>
         [JsonProperty("collectionIds")]
         public List<string> CollectionIds { get; set; }
 
@@ -80,7 +80,7 @@ namespace WixSharp.Entities
         /// Product type: physical/digital
         /// </summary>
         [JsonProperty("productType")]
-        public ProductType ProductType { get; set; }
+        public string ProductType { get; set; }
 
         /// <summary>
         /// Price Data
@@ -260,12 +260,5 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("product")]
         public Product Product { get; set; }
-    }
-
-    public enum ProductType
-    {
-        unspecified_product_type,
-        physical,
-        digital
     }
 }

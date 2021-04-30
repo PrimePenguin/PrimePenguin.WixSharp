@@ -49,7 +49,7 @@ namespace WixSharp.Entities
         /// <summary>
         /// Total refund
         /// </summary>
-        [JsonProperty("refund")]    
-        public string Refund { get; set; }      
+        [JsonProperty("refund")]
+        public string Refund { get; set; }
     }
 }

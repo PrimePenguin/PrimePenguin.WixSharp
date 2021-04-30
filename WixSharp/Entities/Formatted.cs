@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Org.BouncyCastle.Bcpg;
 
 namespace WixSharp.Entities
 {

@@ -61,16 +61,15 @@ namespace WixSharp.Services.InventoryItem
         }
 
         /// <summary>
-        /// Updates the given <see cref="Order"/>.
+        /// Update Inventory Variants
+        /// <para>Updates product inventory, including total quantity, whether the product is in stock, and whether the product inventory is tracked.</para>
         /// </summary>
         /// <param name="productInventoryItemId">Inventory item id</param>
-        /// <param name="variantId">Variant id</param>
         /// <param name="variantInventoryRequest">The <see cref="ItemInventoryStatus"/> to update.</param>
         /// <returns>Returns an empty object..</returns>
-        public virtual async Task<object> UpdateVariantInventoryStatusAsync(string productInventoryItemId,
-            string variantId, VariantInventoryResponse variantInventoryRequest)
+        public virtual async Task<object> UpdateVariantInventoryStatusAsync(string productInventoryItemId, UpdateInventoryVariantsRequest variantInventoryRequest)
         {
-            var req = PrepareRequest($"inventoryItems/{productInventoryItemId}/variants/{variantId}");
+            var req = PrepareRequestV2($"inventoryItems/{productInventoryItemId}");
             HttpContent content = null;
 
             if (variantInventoryRequest != null)
@@ -82,7 +81,7 @@ namespace WixSharp.Services.InventoryItem
         }
 
         /// <summary>
-        /// Get Inventory Variants  
+        /// Get Inventory Variants
         /// </summary>
         /// <param name="productInventoryItemId">Inventory item ID.</param>
         /// <returns>The <see cref="VariantInventoryRequestResponse"/>.</returns>
@@ -94,7 +93,7 @@ namespace WixSharp.Services.InventoryItem
 
 
         /// <summary>
-        /// Query Inventory 
+        /// Query Inventory
         /// </summary>
         /// <param name="request">Query inventory request.</param>
         /// <returns>The <see cref="VariantInventoryRequestResponse"/>.</returns>
@@ -103,7 +102,7 @@ namespace WixSharp.Services.InventoryItem
             var req = PrepareRequestV2($"inventoryItems/query");
             HttpContent content = null;
 
-            if (request != null)    
+            if (request != null)
             {
                 var body = request.ToDictionary();
                 content = new JsonContent(body);
@@ -112,7 +111,7 @@ namespace WixSharp.Services.InventoryItem
         }
 
         /// <summary>
-        /// Update Inventory Variants  
+        /// Update Inventory Variants
         /// </summary>
         /// <param name="productInventoryItemId">Inventory item ID.</param>
         /// <param name="request">Inventory variants request.</param>

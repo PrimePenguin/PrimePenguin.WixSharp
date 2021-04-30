@@ -29,7 +29,8 @@ namespace WixSharp.Entities
         [JsonProperty("height")]
         public int? Height { get; set; }
 
-        [JsonProperty("altText")] public string AltText { get; set; }
+        [JsonProperty("altText")]
+        public string AltText { get; set; }
 
         /// <summary>
         /// Media external URL

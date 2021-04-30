@@ -27,7 +27,7 @@ namespace WixSharp.Services.Product
         /// <returns>The <see cref="Product"/>.</returns>
         public virtual async Task<ProductResponse> GetAsync(string productId)
         {
-            var req = PrepareRequest($"products/{productId}");
+            var req = PrepareRequestV1($"products/{productId}");
             return await ExecuteRequestAsync<ProductResponse>(req, HttpMethod.Get);
         }
 
@@ -38,7 +38,7 @@ namespace WixSharp.Services.Product
         /// <returns>The new <see cref="ProductQueryResponse"/>.</returns>
         public virtual async Task<ProductQueryResponse> GetProductsAsync(ProductRootQuery query)
         {
-            var req = PrepareRequest("products/query");
+            var req = PrepareRequestV1("products/query");
             HttpContent content = null;
 
             if (query != null)
@@ -50,14 +50,14 @@ namespace WixSharp.Services.Product
         }
 
         /// <summary>
-        /// Gets the availability of relevant product variants based on the product ID and selections provided. 
+        /// Gets the availability of relevant product variants based on the product ID and selections provided.
         /// </summary>
         /// <param name="productId">Requested product ID.</param>
         /// <param name="options">Array containing the selected options (e.g, color: Blue, size: Large)</param>
         /// <returns>The new <see cref="ProductOptionsAvailabilityResponse"/>.</returns>
         public virtual async Task<ProductOptionsAvailabilityResponse> GetProductOptionsAvailability(string productId, IDictionary<string, string> options)
         {
-            var req = PrepareRequest($"products/{productId}/productOptionsAvailability");
+            var req = PrepareRequestV1($"products/{productId}/productOptionsAvailability");
             HttpContent content = null;
 
             if (options != null)
@@ -76,7 +76,7 @@ namespace WixSharp.Services.Product
         /// <returns>The new <see cref="ProductQueryResponse"/>.</returns>
         public virtual async Task<QueryVariantsResponse> GetQueryProductVariantsAsync(string productId, ProductQueryVariant query)
         {
-            var req = PrepareRequest($"products/{productId}/variants/query");
+            var req = PrepareRequestV1($"products/{productId}/variants/query");
             HttpContent content = null;
 
             if (query != null)
@@ -97,7 +97,7 @@ namespace WixSharp.Services.Product
         /// <returns>Returns an empty object.</returns>
         public virtual async Task DeleteProductById(string productId)
         {
-            var req = PrepareRequest($"products/{productId}");
+            var req = PrepareRequestV1($"products/{productId}");
             await ExecuteRequestAsync<object>(req, HttpMethod.Delete);
         }
 
@@ -109,7 +109,7 @@ namespace WixSharp.Services.Product
         /// <returns>Returns an empty object.</returns>
         public virtual async Task RemoveProductMedia(string productId, List<string> mediaIds)
         {
-            var req = PrepareRequest($"products/{productId}/media/delete");
+            var req = PrepareRequestV1($"products/{productId}/media/delete");
             HttpContent content = null;
 
             if (mediaIds != null)
@@ -127,7 +127,7 @@ namespace WixSharp.Services.Product
         /// <returns>The new <see cref="Entities.Product"/>.</returns>
         public virtual async Task<Entities.Product> CreateProduct(Entities.Product product)
         {
-            var req = PrepareRequest($"products");
+            var req = PrepareRequestV1($"products");
             HttpContent content = null;
 
             if (product != null)
@@ -145,7 +145,7 @@ namespace WixSharp.Services.Product
         /// <returns>Returns an empty object.</returns>
         public virtual async Task DeleteProductOptions(string productId)
         {
-            var req = PrepareRequest($"products/{productId}/options");
+            var req = PrepareRequestV1($"products/{productId}/options");
             await ExecuteRequestAsync<object>(req, HttpMethod.Delete);
         }
 
@@ -157,7 +157,7 @@ namespace WixSharp.Services.Product
         /// <returns>The new <see cref="UpdateProductResponse"/>.</returns>
         public virtual async Task<UpdateProductResponse> UpdateProduct(string productId, Entities.Product product)
         {
-            var req = PrepareRequest($"products/{productId}");
+            var req = PrepareRequestV1($"products/{productId}");
             HttpContent content = null;
 
             if (product != null)
@@ -176,7 +176,7 @@ namespace WixSharp.Services.Product
         /// <returns>Returns an empty object.</returns>
         public virtual async Task AddProductMedia(string productId, List<AddProductMedia> media)
         {
-            var req = PrepareRequest($"products/{productId}/media");
+            var req = PrepareRequestV1($"products/{productId}/media");
             HttpContent content = null;
 
             if (media != null)
@@ -194,7 +194,7 @@ namespace WixSharp.Services.Product
         /// <returns>Returns an empty object.</returns>
         public virtual async Task ResetAllVariantData(string productId)
         {
-            var req = PrepareRequest($"products/{productId}/variants/resetToDefault");
+            var req = PrepareRequestV1($"products/{productId}/variants/resetToDefault");
             await ExecuteRequestAsync<object>(req, HttpMethod.Post);
         }
 
@@ -206,7 +206,7 @@ namespace WixSharp.Services.Product
         /// <returns>Returns an empty object.</returns>
         public virtual async Task UpdateProductVariant(string productId, List<UpdateVariantRequest> variants)
         {
-            var req = PrepareRequest($"products/{productId}/variants");
+            var req = PrepareRequestV1($"products/{productId}/variants");
             HttpContent content = null;
 
             if (variants != null)
@@ -225,7 +225,7 @@ namespace WixSharp.Services.Product
         /// <returns>Returns an empty object.</returns>
         public virtual async Task AddProductMediaToChoices(string productId, List<ProductMediaChoices> media)
         {
-            var req = PrepareRequest($"products/{productId}/choices/media");
+            var req = PrepareRequestV1($"products/{productId}/choices/media");
             HttpContent content = null;
 
             if (media.Any())
@@ -244,7 +244,7 @@ namespace WixSharp.Services.Product
         /// <returns>Returns an empty object.</returns>
         public virtual async Task RemoveProductMediaFromChoices(string productId, List<ProductMediaChoices> media)
         {
-            var req = PrepareRequest($"products/{productId}/choices/media/delete");
+            var req = PrepareRequestV1($"products/{productId}/choices/media/delete");
             HttpContent content = null;
 
             if (media != null)

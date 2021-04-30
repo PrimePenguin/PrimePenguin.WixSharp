@@ -102,7 +102,7 @@ namespace WixSharp.Services
             {
                 Scheme = "https:",
                 Port = 443,
-                Path = $"stores/v1/{path}"
+                Path = $"stores/v2/{path}"
             };
 
             return new RequestUri(ub.Uri);
@@ -110,7 +110,7 @@ namespace WixSharp.Services
 
         protected RequestUri PrepareRequestForAppInstance(string path)
         {
-            var ub = new UriBuilder(_ShopUri= BuildWixApiUriForAppInstance())
+            var ub = new UriBuilder(_ShopUri = BuildWixApiUriForAppInstance())
             {
                 Scheme = "https:",
                 Port = 443,
@@ -122,11 +122,21 @@ namespace WixSharp.Services
 
         protected RequestUri PrepareRequestV2(string path)
         {
+            return GetRequestUri(path, "v2");
+        }
+
+        protected RequestUri PrepareRequestV1(string path)
+        {
+            return GetRequestUri(path, "v1");
+        }
+
+        public RequestUri GetRequestUri(string path, string version)
+        {
             var ub = new UriBuilder(_ShopUri)
             {
                 Scheme = "https:",
                 Port = 443,
-                Path = $"stores/v2/{path}"
+                Path = $"stores/{version}/{path}"
             };
 
             return new RequestUri(ub.Uri);
@@ -207,7 +217,7 @@ namespace WixSharp.Services
                 string listMessage = "Exceeded 2 calls per second for api client. Reduce request rates to resume uninterrupted service.";
                 string rateLimitMessage = $"Error: {listMessage}";
 
-                // Wix used to return JSON for rate limit exceptions, but then made an unannounced change and started returing HTML. 
+                // Wix used to return JSON for rate limit exceptions, but then made an unannounced change and started returing HTML.
                 // This dictionary is an attempt at preserving what was previously returned.
                 var rateLimitErrors = new Dictionary<string, IEnumerable<string>>
                 {
@@ -236,7 +246,8 @@ namespace WixSharp.Services
                             new[] {$"{message}-{innerExceptionMesage.Message}"}
                         }
                     };
-                }else
+                }
+                else
                 {
                     var firstError = errors.First();
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
 using Microsoft.IdentityModel.Tokens;
@@ -65,7 +66,8 @@ namespace WixSharp
         public const string ProductDeleted = "com.wix.ecommerce.catalog.api.v1.ProductDeleted";
         public const string VariantsChanged = "com.wix.ecommerce.catalog.api.v1.VariantsChanged";
         public const string InventoryVariantsChanged = "com.wix.ecommerce.inventory.api.v1.InventoryVariantsChanged";
-        public const string OrderCreated = "com.wix.ecommerce.orders.api.v2.OrderEvent";
+
+        public static List<string> OrderEvents = new List<string> {"OrderPaid", "OrderEvent" , "OrderCanceled", "OrderRefunded", "FulfillmentCreated" };
         public const string AppRemoved = "AppRemoved";
     }
 }

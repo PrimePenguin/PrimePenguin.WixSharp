@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace WixSharp.Entities
@@ -114,6 +113,12 @@ namespace WixSharp.Entities
         [JsonProperty("index")]
         public int Index { get; set; }
 
+        /// <summary>
+        /// refunded quantity
+        /// </summary>
+        [JsonProperty("refundedQuantity")]
+        public int RefundedQuantity { get; set; }
+
     }
 
     public class LineItemPriceData
@@ -131,7 +136,7 @@ namespace WixSharp.Entities
         public string Price { get; set; }
 
         /// <summary>
-        /// Total price charged to the customer (per line item) after computation of quantity and discount
+        ///Total price charged to the customer (per line item) after computation of quantity and discount
         /// </summary>
         [JsonProperty("totalPrice")]
         public string TotalPrice { get; set; }

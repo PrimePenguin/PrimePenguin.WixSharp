@@ -121,7 +121,7 @@ namespace WixSharp.Entities
         public FulfillmentStatus FulfillmentStatus { get; set; }
 
         /// <summary>
-        /// Custom field    
+        /// Custom field
         /// </summary>
         [JsonProperty("customField")]
         public CustomField CustomField { get; set; }
@@ -155,6 +155,12 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("refunds")]
         public List<Refund> Refunds { get; set; }
+
+        /// <summary>
+        /// Order’s unique numeric ID. Primarily used for sorting and filtering when crawling all orders.
+        /// </summary>
+        [JsonProperty("numericId")]
+        public string NumericId { get; set; }
     }
 
     public class Refund
