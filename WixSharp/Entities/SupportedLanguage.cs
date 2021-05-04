@@ -32,12 +32,6 @@ namespace WixSharp.Entities
         /// States how the language will be resolved
         /// </summary>
         [JsonProperty("resolutionMethod")]
-        public ResolutionMethod ResolutionMethod { get; set; }
-    }
-
-    public enum ResolutionMethod
-    {
-        QUERY_PARAM,
-        SUBDOMAIN ,
+        public string ResolutionMethod { get; set; }
     }
 }

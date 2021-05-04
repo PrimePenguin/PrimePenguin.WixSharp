@@ -9,7 +9,7 @@ namespace WixSharp.Entities
         /// Option type - color or other(drop down)
         /// </summary>
         [JsonProperty("optionType")]
-        public OptionType OptionType { get; set; }
+        public string OptionType { get; set; }
 
         /// <summary>
         /// Option name(e.g., color, size)
@@ -22,12 +22,5 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("choices")]
         public IEnumerable<Choice> Choices { get; set; }
-    }
-
-    public enum OptionType
-    {
-        unspecified_option_type,
-        drop_down,
-        color
     }
 }

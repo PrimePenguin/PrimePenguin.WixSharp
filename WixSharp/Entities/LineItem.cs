@@ -51,7 +51,7 @@ namespace WixSharp.Entities
         /// Line item type(may be extended)
         /// </summary>
         [JsonProperty("lineItemType")]
-        public LineItemType LineItemType { get; set; }
+        public string LineItemType { get; set; }
 
         /// <summary>
         /// Price data
@@ -140,13 +140,5 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("totalPrice")]
         public string TotalPrice { get; set; }
-    }
-
-    public enum LineItemType
-    {
-        UNSPECIFIED_LINE_ITEM_TYPE,
-        PHYSICAL,
-        DIGITAL,
-        CUSTOM_AMOUNT_ITEM
     }
 }

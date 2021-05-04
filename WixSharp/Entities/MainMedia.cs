@@ -8,7 +8,7 @@ namespace WixSharp.Entities
         /// Media item type (image, video, etc.)
         /// </summary>
         [JsonProperty("mediaType")]
-        public MediaItemType MediaType { get; set; }
+        public string MediaType { get; set; }
 
         /// <summary>
         /// Image data(URL, size)
@@ -37,15 +37,5 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; }
-    }
-
-    public enum MediaItemType
-    {
-        unspecified_media_item_type,
-        image,
-        video,
-        audio,
-        document,
-        zip
     }
 }

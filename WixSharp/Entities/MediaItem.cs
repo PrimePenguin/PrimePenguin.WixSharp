@@ -9,7 +9,7 @@ namespace WixSharp.Entities
         /// Media type
         /// </summary>
         [JsonProperty("mediaType")]
-        public MediaType MediaType { get; set; }
+        public string MediaType { get; set; }
 
         /// <summary>
         /// Media URL
@@ -37,11 +37,5 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("externalImageUrl")]
         public string ExternalImageUrl { get; set; }
-    }
-
-    public enum MediaType
-    {
-        UNSPECIFIED_MEDIA_TYPE_ITEM,
-        IMAGE
     }
 }

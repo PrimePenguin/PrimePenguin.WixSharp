@@ -14,12 +14,6 @@ namespace WixSharp.Entities
         /// Invoice source
         /// </summary>
         [JsonProperty("source")]
-        public Source Source { get; set; }
-    }
-
-    public enum Source
-    {
-        UNSPECIFIED_INVOICE_SOURCE,
-        WIX
+        public string Source { get; set; }
     }
 }

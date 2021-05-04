@@ -14,12 +14,6 @@ namespace WixSharp.Entities
         /// Billing cycle type for the user's paid package - monthly/yearly
         /// </summary>
         [JsonProperty("billingCycle")]
-        public BillingCycle BillingCycle { get; set; }
-    }
-    public enum BillingCycle
-    {
-        NONE_CYCLE,
-        MONTHLY,
-        YEARLY
+        public string BillingCycle { get; set; }
     }
 }
