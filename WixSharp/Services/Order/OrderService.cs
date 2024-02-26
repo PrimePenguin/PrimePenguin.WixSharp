@@ -21,7 +21,7 @@ namespace WixSharp.Services.Order
         /// <param name="orderId">The id of the order to retrieve.</param>
         public virtual async Task<GetOrderResponse> GetAsync(string orderId)
         {
-            var req = PrepareRequestV2($"orders/{orderId}");
+            var req = PrepareEcomRequestV1($"orders/{orderId}");
             return await ExecuteRequestAsync<GetOrderResponse>(req, HttpMethod.Get);
         }
 
@@ -32,7 +32,7 @@ namespace WixSharp.Services.Order
         /// <returns>The new <see cref="OrderQueryResponse"/>.</returns>
         public virtual async Task<OrderQueryResponse> QueryOrders(OrderRootQuery query)
         {
-            var req = PrepareRequestV2("orders/query");
+            var req = PrepareEcomRequestV1("orders/search");
             HttpContent content = null;
 
             if (query != null)
@@ -51,7 +51,7 @@ namespace WixSharp.Services.Order
         /// <returns>The new <see cref="Entities.Product"/>.</returns>
         public virtual async Task<FulFillmentResponse> CreateFulfillment(string orderId, CreateFulFillment fulfillment)
         {
-            var req = PrepareRequestV2($"orders/{orderId}/fulfillments");
+            var req = PrepareEcomRequestV1($"fulfillments/orders/{orderId}/create-fulfillment");
             HttpContent content = null;
 
             if (fulfillment != null)
@@ -71,7 +71,7 @@ namespace WixSharp.Services.Order
         /// <returns>Returns an empty object.</returns>
         public virtual async Task<Entities.Order> UpdateFulfillment(string orderId, string fulfillmentId, FulfillmentTrackingInfo fulfillmentTrackingInfo)
         {
-            var req = PrepareRequestV2($"orders/{orderId}/fulfillments/{fulfillmentId}");
+            var req = PrepareEcomRequestV1($"fulfillments/{fulfillmentId}/orders/{orderId}");
             HttpContent content = null;
 
             if (fulfillmentTrackingInfo != null)
@@ -90,7 +90,7 @@ namespace WixSharp.Services.Order
         /// <returns>Returns Updated order data.</returns>
         public virtual async Task<Entities.Order> DeleteFulfillment(string orderId, string fulfillmentId)
         {
-            var req = PrepareRequestV2($"orders/{orderId}/fulfillments/{fulfillmentId}");
+            var req = PrepareRequestV2($"fulfillments/{fulfillmentId}/orders/{orderId}");
             return await ExecuteRequestAsync<Entities.Order>(req, HttpMethod.Delete);
         }
     }
