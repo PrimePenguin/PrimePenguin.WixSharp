@@ -221,10 +221,11 @@ namespace WixSharp.Entities
 
     public enum FulfillmentStatus
     {
-        NOT_FULFILLED,
-        FULFILLED,
-        CANCELED,
-        PARTIALLY_FULFILLED
+        PENDING,
+        ACCEPTED,
+        READY,
+        IN_DELIVERY,
+        FULFILLED
     }
 
     public class GetOrderResponse
