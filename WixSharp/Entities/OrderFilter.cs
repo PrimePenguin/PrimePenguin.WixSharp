@@ -24,6 +24,9 @@ namespace WixSharp.Entities
     {
         [JsonProperty("limit")]
         public long Limit { get; set; }
+
+        [JsonProperty("cursor")]
+        public string Cursor { get; set; }
     }
 
     public  class Filter
