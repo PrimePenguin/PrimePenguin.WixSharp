@@ -44,6 +44,17 @@ namespace WixSharp.Services.Order
         }
 
         /// <summary>
+        /// Get  fulfillments of an order
+        /// </summary>
+        /// <param name="orderId">Order ID to which the fulfillment will be related</param>
+        /// <returns>FulFillmentResponse</returns>
+        public virtual async Task<FulFillmentResponse> GetFulFillments(string orderId)
+        {
+            var req = PrepareEcomRequestV1($"fulfillments/orders/{orderId}");
+            return await ExecuteRequestAsync<FulFillmentResponse>(req, HttpMethod.Get);
+        }
+
+        /// <summary>
         /// Creates a fulfillment (a subset of an order, with line items that are being shipped together) based on the body paramaters passed with the request. If the site owner has requested it, calling this request will trigger an email to the customer (based on the Wix store settings)
         /// </summary>
         /// <param name="orderId">Order ID to which the fulfillment will be related</param>
