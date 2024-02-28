@@ -119,6 +119,10 @@ namespace WixSharp.Services
 
             return new RequestUri(ub.Uri);
         }
+        protected RequestUri PrepareEcomRequestV1(string path)
+        {
+            return GetRequestEcomUri(path, "v1");
+        }
 
         protected RequestUri PrepareRequestV2(string path)
         {
@@ -137,6 +141,18 @@ namespace WixSharp.Services
                 Scheme = "https:",
                 Port = 443,
                 Path = $"stores/{version}/{path}"
+            };
+
+            return new RequestUri(ub.Uri);
+        }
+
+        public RequestUri GetRequestEcomUri(string path, string version)
+        {
+            var ub = new UriBuilder(_ShopUri)
+            {
+                Scheme = "https:",
+                Port = 443,
+                Path = $"ecom/{version}/{path}"
             };
 
             return new RequestUri(ub.Uri);

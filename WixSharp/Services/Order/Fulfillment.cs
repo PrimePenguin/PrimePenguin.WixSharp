@@ -1,26 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Newtonsoft.Json;
-using WixSharp.Entities;
+
 
 namespace WixSharp.Services.Order
 {
+    public class CreateFulFillment
+    {
+        [JsonProperty("fulfillment")]
+        public Fulfillment Fulfillment { get; set; }
+    }
+
     public class Fulfillment
     {
-        /// <summary>
-        /// Information about the line items in the fulfilled order.
-        /// </summary>
         [JsonProperty("lineItems")]
-        public List<FulfillmentLineItem> FulfillmentLineItems { get; set; }
+        public LineItem[] LineItems { get; set; }
 
-        /// <summary>
-        /// Tracking information
-        /// </summary>
         [JsonProperty("trackingInfo")]
         public TrackingInfo TrackingInfo { get; set; }
     }
 
-    public class CreateFulFillment
+    public  class LineItem
     {
-        [JsonProperty("fulfillment")] public Fulfillment Fulfillment { get; set; }
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+
+        [JsonProperty("quantity")]
+        public long Quantity { get; set; }
+    }
+
+    public  class TrackingInfo
+    {
+        [JsonProperty("trackingNumber")]
+        public long TrackingNumber { get; set; }
+
+        [JsonProperty("shippingProvider")]
+        public string ShippingProvider { get; set; }
     }
 }

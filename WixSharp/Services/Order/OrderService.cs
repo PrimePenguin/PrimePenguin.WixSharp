@@ -19,28 +19,28 @@ namespace WixSharp.Services.Order
         /// Returns an order with the provided ID
         /// </summary>
         /// <param name="orderId">The id of the order to retrieve.</param>
-        public virtual async Task<GetOrderResponse> GetAsync(string orderId)
+        public virtual async Task<OrderResponse> GetAsync(string orderId)
         {
-            var req = PrepareRequestV2($"orders/{orderId}");
-            return await ExecuteRequestAsync<GetOrderResponse>(req, HttpMethod.Get);
+            var req = PrepareEcomRequestV1($"orders/{orderId}");
+            return await ExecuteRequestAsync<OrderResponse>(req, HttpMethod.Get);
         }
 
         /// <summary>
         /// Returns a list of up to 100 orders, given the provided paging, sorting and filters. Hidden orders are not returned.
         /// </summary>
         /// <param name="query">provided paging, sorting and filtering.</param>
-        /// <returns>The new <see cref="OrderQueryResponse"/>.</returns>
-        public virtual async Task<OrderQueryResponse> QueryOrders(OrderRootQuery query)
+        /// <returns>The new <see cref="SearchOrderResponse"/>.</returns>
+        public virtual async Task<SearchOrderResponse> QueryOrders(OrderFilter filter)
         {
-            var req = PrepareRequestV2("orders/query");
+            var req = PrepareEcomRequestV1("orders/search");
             HttpContent content = null;
 
-            if (query != null)
+            if (filter != null)
             {
-                var body = query.ToDictionary();
+                var body = filter.ToDictionary();
                 content = new JsonContent(body);
             }
-            return await ExecuteRequestAsync<OrderQueryResponse>(req, HttpMethod.Post, content);
+            return await ExecuteRequestAsync<SearchOrderResponse>(req, HttpMethod.Post, content);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace WixSharp.Services.Order
         /// <returns>The new <see cref="Entities.Product"/>.</returns>
         public virtual async Task<FulFillmentResponse> CreateFulfillment(string orderId, CreateFulFillment fulfillment)
         {
-            var req = PrepareRequestV2($"orders/{orderId}/fulfillments");
+            var req = PrepareEcomRequestV1($"fulfillments/orders/{orderId}/create-fulfillment");
             HttpContent content = null;
 
             if (fulfillment != null)
@@ -67,19 +67,19 @@ namespace WixSharp.Services.Order
         /// </summary>
         /// <param name="orderId">Order ID</param>
         /// <param name="fulfillmentId">Fulfillment ID</param>
-        /// <param name="fulfillmentTrackingInfo">Updated tracking info</param>
+        /// <param name="input">Updated tracking info</param>
         /// <returns>Returns an empty object.</returns>
-        public virtual async Task<Entities.Order> UpdateFulfillment(string orderId, string fulfillmentId, FulfillmentTrackingInfo fulfillmentTrackingInfo)
+        public virtual async Task<FulFillmentResponse> UpdateFulfillment(string orderId, string fulfillmentId, UpdateFulfillment input)
         {
-            var req = PrepareRequestV2($"orders/{orderId}/fulfillments/{fulfillmentId}");
+            var req = PrepareEcomRequestV1($"fulfillments/{fulfillmentId}/orders/{orderId}");
             HttpContent content = null;
 
-            if (fulfillmentTrackingInfo != null)
+            if (input != null)
             {
-                var body = fulfillmentTrackingInfo.ToDictionary();
+                var body = input.ToDictionary();
                 content = new JsonContent(body);
             }
-            return await ExecuteRequestAsync<Entities.Order>(req, HttpMethod.Put, content);
+            return await ExecuteRequestAsync<FulFillmentResponse>(req, HttpMethod.Patch, content);
         }
 
         /// <summary>
@@ -88,10 +88,10 @@ namespace WixSharp.Services.Order
         /// <param name="orderId">Order ID</param>
         /// <param name="fulfillmentId">Fulfillment ID</param>
         /// <returns>Returns Updated order data.</returns>
-        public virtual async Task<Entities.Order> DeleteFulfillment(string orderId, string fulfillmentId)
+        public virtual async Task<FulFillmentResponse> DeleteFulfillment(string orderId, string fulfillmentId)
         {
-            var req = PrepareRequestV2($"orders/{orderId}/fulfillments/{fulfillmentId}");
-            return await ExecuteRequestAsync<Entities.Order>(req, HttpMethod.Delete);
+            var req = PrepareRequestV2($"fulfillments/{fulfillmentId}/orders/{orderId}");
+            return await ExecuteRequestAsync<FulFillmentResponse>(req, HttpMethod.Delete);
         }
     }
 }
