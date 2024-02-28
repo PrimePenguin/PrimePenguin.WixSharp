@@ -23,12 +23,3 @@ deploy:
     secure: OlhS0BAc7K/BYRWvnYP7hdmD6F2BegL7IeSIpzmZjSsARNhSNJF9Tub7MxvNC/+C
   on:
     branch: master
-- provider: GitHub
-  appveyor_repo_tag: true
-  tag: $(APPVEYOR_REPO_TAG_NAME)
-  description: "Automated AppVeyor release for WixSharp v$(APPVEYOR_REPO_TAG_NAME)."
-  auth_token:
-    secure: rUdMlXxmA59ftJKv2pnCXtgwYhZf2xqyFl0iuAvf6qylYCjM3aF8klLN+711LFV5
-  artifact: PrimePenguin.WixSharp.nupkg
-  on:
-    branch: master
