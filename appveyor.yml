@@ -1,5 +1,5 @@
 version: 4.0.{build}
-image: Visual Studio 2017
+image: Visual Studio 2022
 build_script:
 - ps: ./scripts/build.ps1
 environment:
@@ -20,15 +20,6 @@ skip_commits:
 deploy:
 - provider: NuGet
   api_key:
-    secure: 2EuGl4iXcB4QigOuzctc/9s9Jc1H0gofnBUtCU8objuSVTPH8mwHnrIZxFpVB7hu
-  on:
-    branch: master
-- provider: GitHub
-  appveyor_repo_tag: true
-  tag: $(APPVEYOR_REPO_TAG_NAME)
-  description: "Automated AppVeyor release for WixSharp v$(APPVEYOR_REPO_TAG_NAME)."
-  auth_token:
-    secure: rUdMlXxmA59ftJKv2pnCXtgwYhZf2xqyFl0iuAvf6qylYCjM3aF8klLN+711LFV5
-  artifact: PrimePenguin.WixSharp.nupkg
+    secure: OlhS0BAc7K/BYRWvnYP7hdmD6F2BegL7IeSIpzmZjSsARNhSNJF9Tub7MxvNC/+C
   on:
     branch: master
