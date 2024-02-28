@@ -27,9 +27,19 @@ namespace WixSharp.Entities
         public DateTimeOffset CreatedDate { get; set; }
 
         [JsonProperty("lineItems")]
-        public LineItem[] LineItems { get; set; }
+        public FulFillmentLineItem[] LineItems { get; set; }
 
         [JsonProperty("trackingInfo")]
         public TrackingInfo TrackingInfo { get; set; }
     }
+
+    public class FulFillmentLineItem
+    {
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+
+        [JsonProperty("quantity")]
+        public long Quantity { get; set; }
+    }
+
 }
