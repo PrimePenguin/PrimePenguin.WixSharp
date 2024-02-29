@@ -255,4 +255,31 @@ namespace WixSharp.Entities
         [JsonProperty("name")] 
         public string Name { get; set; }
     }
+
+    public enum PaymentStatus
+    {
+        UNSPECIFIED_PAYMENT_STATUS,
+        NOT_PAID,
+        PAID,
+        PARTIALLY_REFUNDED,
+        FULLY_REFUNDED,
+        PENDING
+    }
+
+    public enum WeightUnit
+    {
+        UNSPECIFIED_WEIGHT_UNIT,
+        KG,
+        LB
+    }
+
+    public enum FulfillmentStatus
+    {
+        PENDING,
+        ACCEPTED,
+        READY,
+        IN_DELIVERY,
+        FULFILLED
+    }
+
 }
