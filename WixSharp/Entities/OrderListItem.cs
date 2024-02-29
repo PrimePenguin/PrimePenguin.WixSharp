@@ -8,7 +8,7 @@ namespace WixSharp.Entities
     public class OrderListItem
     {
         [JsonProperty("id")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("number")]
         public long Number { get; set; }
@@ -20,7 +20,7 @@ namespace WixSharp.Entities
         public DateTimeOffset UpdatedDate { get; set; }
 
         [JsonProperty("lineItems")]
-        public LineItem[] LineItems { get; set; }
+        public List<OrderLineItem> LineItems { get; set; }
 
         [JsonProperty("buyerInfo")]
         public OrderBuyerInfo BuyerInfo { get; set; }
@@ -50,7 +50,7 @@ namespace WixSharp.Entities
         public OrderBillingInfo BillingInfo { get; set; }
 
         [JsonProperty("shippingInfo")]
-        public ShippingInfo ShippingInfo { get; set; }
+        public OrderShippingInfo ShippingInfo { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }
@@ -65,7 +65,7 @@ namespace WixSharp.Entities
         public AppliedDiscount[] AppliedDiscounts { get; set; }
 
         [JsonProperty("activities")]
-        public Activity[] Activities { get; set; }
+        public List<Activity> Activities { get; set; }
 
         [JsonProperty("attributionSource")]
         public string AttributionSource { get; set; }
@@ -92,7 +92,7 @@ namespace WixSharp.Entities
         public object[] AdditionalFees { get; set; }
 
         [JsonProperty("checkoutId", NullValueHandling = NullValueHandling.Ignore)]
-        public Guid? CheckoutId { get; set; }
+        public string? CheckoutId { get; set; }
 
         [JsonProperty("payNow", NullValueHandling = NullValueHandling.Ignore)]
         public PayNow PayNow { get; set; }

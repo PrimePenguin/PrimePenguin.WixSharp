@@ -6,7 +6,7 @@ namespace WixSharp.Entities
     public class OrderDetail
     {
         [JsonProperty("id")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("number")]
         public long Number { get; set; }
@@ -78,13 +78,13 @@ namespace WixSharp.Entities
         public bool SeenByAHuman { get; set; }
 
         [JsonProperty("checkoutId")]
-        public Guid CheckoutId { get; set; }
+        public string CheckoutId { get; set; }
 
         [JsonProperty("customFields")]
         public object[] CustomFields { get; set; }
 
         [JsonProperty("cartId")]
-        public Guid CartId { get; set; }
+        public string CartId { get; set; }
 
         [JsonProperty("payNow")]
         public PayNow PayNow { get; set; }

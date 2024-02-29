@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace WixSharp.Entities
 {
@@ -12,22 +13,22 @@ namespace WixSharp.Entities
     public  class OrderWithFulfillments
     {
         [JsonProperty("orderId")]
-        public Guid OrderId { get; set; }
+        public string OrderId { get; set; }
 
         [JsonProperty("fulfillments")]
-        public Fulfillment[] Fulfillments { get; set; }
+        public List<Fulfillment> Fulfillments { get; set; }
     }
 
     public  class Fulfillment
     {
         [JsonProperty("id")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("createdDate")]
         public DateTimeOffset CreatedDate { get; set; }
 
         [JsonProperty("lineItems")]
-        public FulFillmentLineItem[] LineItems { get; set; }
+        public List<FulFillmentLineItem> LineItems { get; set; }
 
         [JsonProperty("trackingInfo")]
         public TrackingInfo TrackingInfo { get; set; }
@@ -36,7 +37,7 @@ namespace WixSharp.Entities
     public class FulFillmentLineItem
     {
         [JsonProperty("id")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("quantity")]
         public long Quantity { get; set; }
