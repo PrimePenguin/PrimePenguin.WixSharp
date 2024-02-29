@@ -52,16 +52,16 @@ namespace WixSharp.Entities
     public class OrderBuyerInfo
     {
         [JsonProperty("contactId")] 
-        public Guid ContactId { get; set; }
+        public string ContactId { get; set; }
 
         [JsonProperty("email")] 
         public string Email { get; set; }
 
         [JsonProperty("memberId", NullValueHandling = NullValueHandling.Ignore)]
-        public Guid? MemberId { get; set; }
+        public string? MemberId { get; set; }
 
         [JsonProperty("visitorId", NullValueHandling = NullValueHandling.Ignore)]
-        public Guid? VisitorId { get; set; }
+        public string? VisitorId { get; set; }
     }
 
     public class OrderChannelInfo
@@ -73,16 +73,16 @@ namespace WixSharp.Entities
     public class CreatedBy
     {
         [JsonProperty("visitorId")] 
-        public Guid VisitorId { get; set; }
+        public string VisitorId { get; set; }
     }
 
     public class CatalogReference
     {
         [JsonProperty("catalogItemId")] 
-        public Guid CatalogItemId { get; set; }
+        public string CatalogItemId { get; set; }
 
         [JsonProperty("appId")] 
-        public Guid AppId { get; set; }
+        public string AppId { get; set; }
 
         [JsonProperty("options")] 
         public CatalogReferenceOptions Options { get; set; }
@@ -94,7 +94,7 @@ namespace WixSharp.Entities
         public OptionsOptions Options { get; set; }
 
         [JsonProperty("variantId")] 
-        public Guid VariantId { get; set; }
+        public string VariantId { get; set; }
     }
 
     public class OptionsOptions
@@ -196,10 +196,10 @@ namespace WixSharp.Entities
     public class OrderShippingInfo
     {
         [JsonProperty("carrierId")] 
-        public Guid CarrierId { get; set; }
+        public string CarrierId { get; set; }
 
         [JsonProperty("code")] 
-        public Guid Code { get; set; }
+        public string Code { get; set; }
 
         [JsonProperty("title")] 
         public string Title { get; set; }
@@ -247,7 +247,7 @@ namespace WixSharp.Entities
         public string DeliveryTime { get; set; }
 
         [JsonProperty("shippingDestination")] 
-        public BillingInfo ShippingDestination { get; set; }
+        public OrderBillingInfo ShippingDestination { get; set; }
     }
 
     public class Region

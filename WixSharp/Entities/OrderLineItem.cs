@@ -8,7 +8,7 @@ namespace WixSharp.Entities
     public class OrderLineItem
     {
         [JsonProperty("id")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("productName")]
         public ProductName ProductName { get; set; }

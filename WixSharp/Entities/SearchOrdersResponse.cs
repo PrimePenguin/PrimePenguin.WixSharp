@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace WixSharp.Entities
 {
     public class SearchOrderResponse
     {
         [JsonProperty("orders")]
-        public OrderListItem[] Orders { get; set; }
+        public List<OrderListItem> Orders { get; set; }
 
         [JsonProperty("metadata")]
         public Metadata Metadata { get; set; }
@@ -39,7 +40,7 @@ namespace WixSharp.Entities
         public string DiscountType { get; set; }
 
         [JsonProperty("lineItemIds")]
-        public Guid[] LineItemIds { get; set; }
+        public string[] LineItemIds { get; set; }
 
         [JsonProperty("merchantDiscount", NullValueHandling = NullValueHandling.Ignore)]
         public MerchantDiscount MerchantDiscount { get; set; }
@@ -51,7 +52,7 @@ namespace WixSharp.Entities
     public  class Coupon
     {
         [JsonProperty("id")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("code")]
         public string Code { get; set; }
@@ -75,7 +76,7 @@ namespace WixSharp.Entities
     public  class OrderCatalogReferenceOptions
     {
         [JsonProperty("variantId")]
-        public Guid VariantId { get; set; }
+        public string VariantId { get; set; }
 
         [JsonProperty("options", NullValueHandling = NullValueHandling.Ignore)]
         public OrderOptionsOptions Options { get; set; }
