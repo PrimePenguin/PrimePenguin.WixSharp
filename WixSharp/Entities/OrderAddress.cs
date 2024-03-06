@@ -14,10 +14,13 @@ namespace WixSharp.Entities
         public string City { get; set; }
 
         [JsonProperty("postalCode")]
-        public long PostalCode { get; set; }
+        public string  PostalCode { get; set; }
 
         [JsonProperty("addressLine")]
         public string AddressLine { get; set; }
+
+        [JsonProperty("addressLine2")]
+        public string AddressLine2 { get; set; }
 
         [JsonProperty("countryFullname")]
         public string CountryFullname { get; set; }

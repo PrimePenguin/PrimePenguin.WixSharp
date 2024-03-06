@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace WixSharp.Services.Order
 {
-    public class CreateFulFillment
+    public  class CreateFulFillment
     {
         [JsonProperty("fulfillment")]
         public FulfillmentInput Fulfillment { get; set; }
@@ -13,16 +14,28 @@ namespace WixSharp.Services.Order
         [JsonProperty("lineItems")]
         public LineItemInput[] LineItems { get; set; }
 
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
         [JsonProperty("trackingInfo")]
-        public FulfillmentTrackingInfo TrackingInfo { get; set; }
+        public TrackingInfoInput TrackingInfo { get; set; }
     }
 
     public  class LineItemInput
     {
-        [JsonProperty("index")]
-        public long Index { get; set; }
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
 
         [JsonProperty("quantity")]
         public long Quantity { get; set; }
+    }
+
+    public  class TrackingInfoInput
+    {
+        [JsonProperty("trackingNumber")]
+        public string TrackingNumber { get; set; }
+
+        [JsonProperty("shippingProvider")]
+        public string ShippingProvider { get; set; }
     }
 }
