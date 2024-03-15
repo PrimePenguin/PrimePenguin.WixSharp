@@ -189,7 +189,10 @@ namespace WixSharp.Entities
         [JsonProperty("total")] 
         public Balance Total { get; set; }
 
-        [JsonProperty("totalAdditionalFees", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("totalPrice")]
+        public Balance TotalPrice { get; set; }
+
+        [JsonProperty("totalAdditionalFees")]
         public Balance TotalAdditionalFees { get; set; }
     }
 
