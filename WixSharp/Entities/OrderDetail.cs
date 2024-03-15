@@ -60,7 +60,7 @@ namespace WixSharp.Entities
         public TaxSummary TaxSummary { get; set; }
 
         [JsonProperty("appliedDiscounts")]
-        public object[] AppliedDiscounts { get; set; }
+        public AppliedDiscount[] AppliedDiscounts { get; set; }
 
         [JsonProperty("activities")]
         public OrderActivity[] Activities { get; set; }
