@@ -3,7 +3,7 @@
     <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <AssemblyName>PrimePenguin.WixSharp</AssemblyName>
     <RootNamespace>WixSharp</RootNamespace>
-    <Version>0.2.8</Version>
+    <Version>0.2.9</Version>
   </PropertyGroup>
   <PropertyGroup>
     <Description>WixSharp is a C# and .NET library that helps developers easily authenticate with and manage Wix stores.</Description>

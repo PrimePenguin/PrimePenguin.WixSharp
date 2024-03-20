@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace WixSharp.Entities
 {
@@ -11,7 +12,7 @@ namespace WixSharp.Entities
     public  class Search
     {
         [JsonProperty("filter")]
-        public string Filter { get; set; }
+        public Dictionary<string, Dictionary<string, string>> Filter { get; set; }
 
         [JsonProperty("sort")]
         public Sort[] Sort { get; set; }
