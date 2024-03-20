@@ -11,7 +11,7 @@ namespace WixSharp.Entities
     public  class Search
     {
         [JsonProperty("filter")]
-        public Filter Filter { get; set; }
+        public string Filter { get; set; }
 
         [JsonProperty("sort")]
         public Sort[] Sort { get; set; }
@@ -27,15 +27,6 @@ namespace WixSharp.Entities
 
         [JsonProperty("cursor")]
         public string Cursor { get; set; }
-    }
-
-    public  class Filter
-    {
-        [JsonProperty("paymentStatus")]
-        public string PaymentStatus { get; set; }
-
-        [JsonProperty("fulfillmentStatus")]
-        public string FulfillmentStatus { get; set; }
     }
 
     public  class Sort
