@@ -69,5 +69,29 @@ namespace WixSharp
 
         public static List<string> OrderEvents = new List<string> {"OrderPaid", "OrderEvent" , "OrderCanceled", "OrderRefunded", "FulfillmentCreated" };
         public const string AppRemoved = "AppRemoved";
+
+        // Domain events, named "{entityFqdn}_{slug}". Their data can be parsed with WixDomainEvent.Parse.
+        // Sites on Catalog V3 only send the V3 catalog events, so subscribe to both V1 and V3 events to support all sites.
+        public const string ProductV3Created = "wix.stores.catalog.v3.product_created";
+        public const string ProductV3Updated = "wix.stores.catalog.v3.product_updated";
+        public const string ProductV3Deleted = "wix.stores.catalog.v3.product_deleted";
+        public const string InventoryItemV3Created = "wix.stores.catalog.v3.inventory_item_created";
+        public const string InventoryItemV3Updated = "wix.stores.catalog.v3.inventory_item_updated";
+        public const string InventoryItemV3Deleted = "wix.stores.catalog.v3.inventory_item_deleted";
+        public const string InventoryItemV3UpdatedWithReason = "wix.stores.catalog.v3.inventory_item_updated_with_reason";
+        public const string CategoryCreated = "wix.categories.v1.category_created";
+        public const string CategoryUpdated = "wix.categories.v1.category_updated";
+        public const string CategoryDeleted = "wix.categories.v1.category_deleted";
+        // Wix documents these action event slugs, but not full example event types; they follow the "{entityFqdn}_{slug}" rule.
+        public const string CategoryMoved = "wix.categories.v1.category_category_moved";
+        public const string CategoryItemAdded = "wix.categories.v1.category_item_added_to_category";
+        public const string CategoryItemRemoved = "wix.categories.v1.category_item_removed_from_category";
+        public const string CategoryItemsArranged = "wix.categories.v1.category_items_arranged_in_category";
+        public const string EcomOrderCreated = "wix.ecom.v1.order_created";
+        public const string EcomOrderUpdated = "wix.ecom.v1.order_updated";
+        public const string EcomOrderApproved = "wix.ecom.v1.order_approved";
+        public const string EcomOrderCanceled = "wix.ecom.v1.order_canceled";
+        public const string EcomOrderPaymentStatusUpdated = "wix.ecom.v1.order_payment_status_updated";
+        public const string EcomOrderFulfillmentsUpdated = "wix.ecom.v1.fulfillments_updated";
     }
 }

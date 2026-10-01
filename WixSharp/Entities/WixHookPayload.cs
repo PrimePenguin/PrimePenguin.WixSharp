@@ -7,5 +7,6 @@ namespace WixSharp.Entities
         [JsonProperty("data")] public string Data { get; set; }
         [JsonProperty("instanceId")] public string InstanceId { get; set; }
         [JsonProperty("eventType")] public string EventType { get; set; }
+        [JsonProperty("identity")] public string Identity { get; set; }
     }
 }

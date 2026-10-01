@@ -27,5 +27,17 @@ namespace WixSharp.Entities
         /// </summary>
         [JsonProperty("multilingual")]
         public Multilingual Multilingual { get; set; }
+
+        /// <summary>
+        /// Site ID
+        /// </summary>
+        [JsonProperty("siteId")]
+        public string SiteId { get; set; }
+
+        /// <summary>
+        /// Site URL
+        /// </summary>
+        [JsonProperty("url")]
+        public string Url { get; set; }
     }
 }

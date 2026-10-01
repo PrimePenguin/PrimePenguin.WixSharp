@@ -22,5 +22,15 @@ namespace WixSharp.Services.AppInstance
             var req = PrepareRequestForAppInstance($"instance");
             return await ExecuteRequestAsync<AppInstanceResponse>(req, HttpMethod.Get);
         }
+
+        /// <summary>
+        /// Retrieves data about the installation of your app on the user's website, using the current
+        /// App Instance endpoint (https://www.wixapis.com/apps/v1/instance). Works with OAuth 2 access tokens.
+        /// </summary>
+        public virtual async Task<AppInstanceResponse> GetAppInstanceAsync()
+        {
+            var req = PrepareWixApiRequest("apps/v1/instance");
+            return await ExecuteRequestAsync<AppInstanceResponse>(req, HttpMethod.Get);
+        }
     }
 }

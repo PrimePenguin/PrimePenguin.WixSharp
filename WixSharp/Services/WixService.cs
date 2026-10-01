@@ -134,6 +134,27 @@ namespace WixSharp.Services
             return GetRequestUri(path, "v1");
         }
 
+        protected RequestUri PrepareRequestV3(string path)
+        {
+            return GetRequestUri(path, "v3");
+        }
+
+        /// <summary>
+        /// Prepares a request to any path on www.wixapis.com, e.g. "categories/v1/categories" or "apps/v1/instance".
+        /// </summary>
+        protected RequestUri PrepareWixApiRequest(string path)
+        {
+            // Built from BuildWixApiUri() rather than _ShopUri, because PrepareRequestForAppInstance overwrites _ShopUri.
+            var ub = new UriBuilder(BuildWixApiUri())
+            {
+                Scheme = "https:",
+                Port = 443,
+                Path = path
+            };
+
+            return new RequestUri(ub.Uri);
+        }
+
         public RequestUri GetRequestUri(string path, string version)
         {
             var ub = new UriBuilder(_ShopUri)

@@ -38,7 +38,7 @@ namespace WixSharp.Entities
     {
         [JsonProperty("query")]
         public Query Query { get; set; }
-            
+
         /// <summary>
         /// Whether variants should be included in the response
         /// </summary>
